@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_app_advanced/shared/styles/colors.dart';
+import 'package:store_app_advanced/shared/styles/themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Store',
-      theme: ThemeData(
-
-      ),
+      theme: lightThemeData(),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -86,6 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
+            Container(
+              color: AppColor.gray1,
+              child: Text("fsjgfzk",style: TextStyle(color: Colors.grey,)),
+            ),
             const Text(
               'You have pushed the button this many times:',
             ),
