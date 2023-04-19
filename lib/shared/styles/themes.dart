@@ -2,37 +2,99 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:store_app_advanced/shared/styles/colors.dart';
 
-ThemeData lightThemeData() {
-  return ThemeData(
-    scaffoldBackgroundColor: AppColor.white,
-    appBarTheme: const AppBarTheme(
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: AppColor.white,
-        statusBarBrightness: Brightness.dark,
-      ),
 
-      backgroundColor: AppColor.white,
-      elevation: 0.0,
-      titleTextStyle: TextStyle(
-        color: AppColor.black,
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        fontFamily: "Cairo",
-      ),
+ThemeData darkTheme = ThemeData(
+
+  primarySwatch:AppColor.mainColor,
+  scaffoldBackgroundColor: AppColor.dark,
+  appBarTheme: const AppBarTheme(
+    titleSpacing: 20.0,
+    centerTitle: true,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: AppColor.dark,
+      statusBarIconBrightness: Brightness.light,
+    ),
+    backgroundColor: AppColor.dark,
+
+    elevation: 0.0,
+    titleTextStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.white,
+    ),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor:AppColor.defaultColor,
+    unselectedItemColor: Colors.grey,
+    elevation: 20.0,
+    backgroundColor: AppColor.dark,
+  ),
+  textTheme: const TextTheme(
+    bodyMedium:TextStyle(
+      fontSize: 18.0,
+      fontWeight: FontWeight.w600,
+      color: AppColor.white,
+    ),
+  ),
+  fontFamily: 'Jannah',
+);
+
+
+
+ThemeData lightTheme = ThemeData(
+  // primarySwatch:AppColor.mainColor,
+  scaffoldBackgroundColor:AppColor.white,
+  appBarTheme: const AppBarTheme(
+    titleSpacing: 20.0,
+    centerTitle: true,
+
+    // backwardsCompatibility: false,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      // statusBarBrightness: Brightness.light,
+
+      statusBarColor: AppColor.white,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+    backgroundColor: Colors.white,
+    elevation: 0.0,
+    titleTextStyle: TextStyle(
+      color: AppColor.black,
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
 
     ),
-      bottomNavigationBarTheme:const BottomNavigationBarThemeData(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColor.defaultColor,
+    iconTheme: IconThemeData(
+      color: AppColor.black,
+    ),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor:AppColor.defaultColor,
+    unselectedItemColor: Colors.grey,
+    elevation: 20.0,
+    backgroundColor: Colors.white,
+  ),
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(
+      fontSize: 18.0,
+      fontWeight: FontWeight.w600,
+      color: AppColor.black,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 16,
+      // fontWeight: FontWeight.w600,
+      color: AppColor.gray,
 
-      ),
-
-  );
-}
 
 
-
-
+    ),
+  ),
+  fontFamily: 'Jannah',
+);
 
 
 
@@ -43,51 +105,3 @@ ThemeData lightThemeData() {
 
 
 
-//     textTheme: TextTheme(
-//       headlineMedium: TextStyle(
-//         color: maincolor,
-//       ),
-//       headlineSmall: TextStyle(
-//         color: dark,
-//       ),
-//       bodyLarge: const TextStyle(
-//         color: Colors.black,
-//       ),
-//       bodyMedium: const TextStyle(
-//         color: Colors.black,
-//       ),
-//       bodySmall: const TextStyle(
-//         color: Colors.white,
-//       ),
-//     ),
-//     scaffoldBackgroundColor: white,
-//     appBarTheme: AppBarTheme(
-//       elevation: 0,
-//       backgroundColor: white,
-//       titleTextStyle: TextStyle(
-//         color: dark,
-//       ),
-//       iconTheme: IconThemeData(
-//         color: dark,
-//       ),
-//     ),
-//     fontFamily: 'Poppins',
-//     primarySwatch: maincolor,
-//     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-//       type: BottomNavigationBarType.fixed,
-//       showSelectedLabels: true,
-//       showUnselectedLabels: true,
-//       backgroundColor: white,
-//       selectedIconTheme: IconThemeData(
-//         color: maincolor,
-//       ),
-//       unselectedIconTheme: const IconThemeData(
-//         color: Colors.grey,
-//       ),
-//       selectedLabelStyle: TextStyle(
-//         color: maincolor,
-//       ),
-//       unselectedItemColor: dark,
-//     ),
-//   );
-// }
