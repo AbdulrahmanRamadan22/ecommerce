@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class AppColor{
 
  static const  Color defaultColor =    Color(0xff50a1d8) ;
- static  MaterialColor mainColor =   Colors.cyan;//default App
 //default App
  static const Color white = Colors.white;
  static  const Color black = Colors.black;
@@ -17,4 +16,16 @@ class AppColor{
 }
 
 
-
+MaterialColor mycolor = const MaterialColor(0xff50a1d8, <int, Color>{
+ 50: Color(0xff50a1d8),
+ 100: Color(0xff50a1d8),
+ 200: Color(0xff50a1d8),
+ 300: Color(0xff50a1d8),
+ 400: Color(0xff50a1d8),
+ 500: Color(0xff50a1d8),
+ 600: Color(0xff50a1d8),
+ 700: Color(0xff50a1d8),
+ 800: Color(0xff50a1d8),
+ 900: Color(0xff50a1d8),
+},
+);

@@ -5,7 +5,10 @@ import 'package:store_app_advanced/shared/styles/colors.dart';
 
 ThemeData darkTheme = ThemeData(
 
-  primarySwatch:AppColor.mainColor,
+  primarySwatch:mycolor,
+  focusColor: Colors.amberAccent,
+  // primaryColor: Colors.deepOrange,
+
   scaffoldBackgroundColor: AppColor.dark,
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
@@ -46,8 +49,13 @@ ThemeData darkTheme = ThemeData(
 
 
 ThemeData lightTheme = ThemeData(
-  // primarySwatch:AppColor.mainColor,
+  primarySwatch:mycolor,
+  // primarySwatch: Color(0xFF3399FF),
+
   scaffoldBackgroundColor:AppColor.white,
+  primaryColor: AppColor.black,
+  // focusColor: Colors.amberAccent,
+
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
     centerTitle: true,
@@ -64,13 +72,14 @@ ThemeData lightTheme = ThemeData(
     titleTextStyle: TextStyle(
       color: AppColor.black,
       fontSize: 20.0,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w900,
 
     ),
     iconTheme: IconThemeData(
       color: AppColor.black,
     ),
   ),
+  // ignore: prefer_const_constructors
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
     selectedItemColor:AppColor.defaultColor,
@@ -80,17 +89,20 @@ ThemeData lightTheme = ThemeData(
   ),
   textTheme: const TextTheme(
     bodyLarge: TextStyle(
-      fontSize: 18.0,
-      fontWeight: FontWeight.w600,
+      fontSize: 24.0,
+      fontWeight: FontWeight.w700,
       color: AppColor.black,
     ),
+
     bodyMedium: TextStyle(
-      fontSize: 16,
+      fontSize: 18.0,
       // fontWeight: FontWeight.w600,
       color: AppColor.gray,
-
-
-
+    ),
+    bodySmall: TextStyle(
+      fontSize: 16.0,
+      // fontWeight: FontWeight.w600,
+      color: AppColor.gray,
     ),
   ),
   fontFamily: 'Jannah',

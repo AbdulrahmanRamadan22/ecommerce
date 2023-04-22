@@ -7,7 +7,7 @@ Widget defaultButton({
   Color backGround = AppColor.defaultColor,
   double height = 50,
   required String? text,
-  double radius = 0.0,
+  double radius = 10.0,
   bool isUppercase = false,
   required Function() onPressed,
 }) =>
@@ -25,7 +25,7 @@ Widget defaultButton({
           style: const TextStyle(
             color: AppColor.white,
             fontFamily: "Jannah",
-            fontSize: 18,
+            fontSize: 20,
           ),
         ),
       ),

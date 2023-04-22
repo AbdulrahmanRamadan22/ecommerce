@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app_advanced/shared/widgets/navigate_and_finish.dart';
 
 import '../../models/on_boarding_model.dart';
 import '../../shared/constants/image_assets.dart';
@@ -6,11 +7,19 @@ import '../../shared/styles/colors.dart';
 import '../../shared/widgets/default_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../shared/widgets/navigate_to_screen.dart';
+import '../login/login_screen.dart';
+
 
 // ignore: must_be_immutable
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends StatefulWidget {
    OnBoardingScreen({Key? key}) : super(key: key);
 
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<OnBoardingModel> onBoardingList = [
     OnBoardingModel(
         title: "Choose Product",
@@ -38,6 +47,8 @@ class OnBoardingScreen extends StatelessWidget {
 
   var boardingController=PageController();
 
+  bool isLast=false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +59,20 @@ class OnBoardingScreen extends StatelessWidget {
           Expanded(
             flex: 5,
             child: PageView.builder(
+              onPageChanged: (index) {
+                if(index == onBoardingList.length - 1)
+                  {
+                    setState(() {
+                      isLast=true;
+                    });
+                  }
+                else{
+                  setState(() {
+                    isLast=false;
+                  });
+                }
+
+              },
               controller: boardingController,
               physics: const BouncingScrollPhysics(),
 
@@ -63,7 +88,7 @@ class OnBoardingScreen extends StatelessWidget {
             child: Column(
               children: [
                 SmoothPageIndicator(
-                  effect: ExpandingDotsEffect(
+                  effect: const ExpandingDotsEffect(
                     activeDotColor: AppColor.defaultColor,
                     dotColor: AppColor.gray1,
                     dotHeight: 10,
@@ -76,30 +101,35 @@ class OnBoardingScreen extends StatelessWidget {
                     controller: boardingController,
                     count: onBoardingList.length),
 
-                Spacer(),
+                const Spacer(),
                 defaultButton(
                   text: "Continue",
                   onPressed: (){
-                    boardingController.nextPage(
-                        duration: Duration(
-                          milliseconds: 750,
-                        ),
-                        curve: Curves.fastLinearToSlowEaseIn);
+
+                    if(isLast){
+                      navigateAndFinish(context, LoginScreen());
+                    }
+                    else{
+                      boardingController.nextPage(
+                          duration: const Duration(
+                            milliseconds: 750,
+                          ),
+                          curve: Curves.fastLinearToSlowEaseIn);
+                    }
+
                   },
                   width: 300,
-                  radius: 8.0,
+
 
                 ),
                 TextButton(
                     onPressed: (){
-                      boardingController.nextPage(
-                          duration: Duration(
-                            milliseconds: 750,
-                          ),
-                          curve: Curves.fastLinearToSlowEaseIn);
+
+                      navigateAndFinish(context,LoginScreen());
+
                     },
                     child: const Text("Skip",style: TextStyle(fontSize: 20,fontFamily: "Jannah",color: AppColor.black),)),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
               ],
             ),
           ),

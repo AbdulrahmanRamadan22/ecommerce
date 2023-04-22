@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app_advanced/shared/styles/colors.dart';
 
 Widget defaultFormField({
   @required TextEditingController? controller,
@@ -12,6 +13,8 @@ Widget defaultFormField({
   @required String? label,
   @required IconData? prefix,
   IconData? suffix,
+  double radius=10,
+
   // bool isClickable = true,
 
 }) =>
@@ -29,13 +32,28 @@ Widget defaultFormField({
       decoration: InputDecoration(
         labelText: label,
 
+        border:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius),
+        ),
+        focusedBorder:  OutlineInputBorder(
+          borderSide: const BorderSide(
+              color:AppColor.defaultColor,
+          ),
 
-        border: const OutlineInputBorder(),
+          borderRadius: BorderRadius.circular(radius),
+
+
+        ),
+
 
 
         prefixIcon: Icon(
           prefix,
         ),
+
+
+
+
         suffixIcon: suffix != null ? IconButton(
           icon: Icon(
             suffix,

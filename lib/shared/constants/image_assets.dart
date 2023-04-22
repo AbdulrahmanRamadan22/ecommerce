@@ -8,4 +8,6 @@ class AppImageAsset {
   static const String onBoardingImageThree = "$roteImages/onboardingthree.png";
 
   static const String onBoardingImageFour = "$roteImages/onboardingfour.png";
+  static const String logo = "$roteImages/logo.png";
+
 }
