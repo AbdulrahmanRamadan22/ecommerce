@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:store_app_advanced/shared/styles/colors.dart';
+import 'package:get/get.dart';
+import 'package:store_app_advanced/shared/services/services.dart';
 import 'package:store_app_advanced/shared/styles/themes.dart';
 
-import 'modules/on_boarding/on_boarding_screen.dart';
+import 'routes.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initialServices();
   runApp(const MyApp());
 }
 
@@ -14,12 +17,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+     getPages:routes,
       debugShowCheckedModeBanner: false,
       title: 'Store',
       theme: lightTheme,
-      home:  OnBoardingScreen(),
-    );
+       );
   }
 }
 

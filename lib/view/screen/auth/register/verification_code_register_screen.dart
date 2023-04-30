@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:store_app_advanced/modules/login/login_screen.dart';
+import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/styles/colors.dart';
-import 'package:store_app_advanced/shared/widgets/navigate_to_screen.dart';
 
-import '../../shared/widgets/default_button.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
-import '../reset_password/reset_password_screen.dart';
-class VerificationCodeScreen extends StatelessWidget {
-  const VerificationCodeScreen({Key? key}) : super(key: key);
+import '../../../../controller/auth/register/verification_code_register_controller.dart';
+import '../../../widgets/default_button.dart';
+
+
+class VerificationCodeRegisterScreen extends StatelessWidget {
+  const VerificationCodeRegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    VerificationCodeRegisterControllerImplement controller= Get.put(VerificationCodeRegisterControllerImplement());
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Verification"),
@@ -32,7 +35,7 @@ class VerificationCodeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                  fieldWidth: 50,
                   focusedBorderColor: AppColor.defaultColor,
-                  numberOfFields: 5,
+                  numberOfFields: 6,
 
                   // borderColor: AppColor.defaultColor,
 
@@ -40,12 +43,14 @@ class VerificationCodeScreen extends StatelessWidget {
                   showFieldAsBox: true,
                   //runs when a code is typed in
                   onCodeChanged: (String code) {
+                    print(code);
                     //handle validation or checks here
                   },
                   //runs when every textfield is filled
                   onSubmit: (String verificationCode){
+                    controller.goToSuccessRegister();
 
-                    navigateTo(context, ResetPasswordScreen());
+                    // Get.to( ResetPasswordScreen());
                   }, // end onSubmit
                 ),
 
@@ -55,13 +60,9 @@ class VerificationCodeScreen extends StatelessWidget {
                 defaultButton(
                   text: "Verify",
                   onPressed: (){
-                    navigateTo(context, ResetPasswordScreen());
+                 controller.goToSuccessRegister();
                   },
                 ),
-
-
-
-
 
               ]
           ),

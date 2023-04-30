@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:store_app_advanced/shared/styles/colors.dart';
 
 Widget defaultFormField({
-  @required TextEditingController? controller,
+  required TextEditingController? controller,
   @required TextInputType? type,
   Function(String)? onSubmit,
   Function(String)? onChange,
   Function()? onTap,
   Function()? suffixPressed,
   bool isPassword = false,
-  @required String? Function(String?)? validate,
+  required String? Function(String?)? validate,
   @required String? label,
   @required IconData? prefix,
   IconData? suffix,

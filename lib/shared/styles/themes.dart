@@ -29,7 +29,7 @@ ThemeData darkTheme = ThemeData(
       color: Colors.white,
     ),
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
     selectedItemColor:AppColor.defaultColor,
     unselectedItemColor: Colors.grey,
@@ -50,17 +50,14 @@ ThemeData darkTheme = ThemeData(
 
 ThemeData lightTheme = ThemeData(
   primarySwatch:mycolor,
-  // primarySwatch: Color(0xFF3399FF),
 
   scaffoldBackgroundColor:AppColor.white,
   primaryColor: AppColor.black,
-  // focusColor: Colors.amberAccent,
 
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
     centerTitle: true,
 
-    // backwardsCompatibility: false,
     systemOverlayStyle: SystemUiOverlayStyle(
       // statusBarBrightness: Brightness.light,
 
@@ -73,7 +70,6 @@ ThemeData lightTheme = ThemeData(
       color: AppColor.black,
       fontSize: 20.0,
       fontWeight: FontWeight.w900,
-
     ),
     iconTheme: IconThemeData(
       color: AppColor.black,
@@ -93,7 +89,6 @@ ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.w700,
       color: AppColor.black,
     ),
-
     bodyMedium: TextStyle(
       fontSize: 18.0,
       // fontWeight: FontWeight.w600,

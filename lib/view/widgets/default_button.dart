@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../styles/colors.dart';
+import '../../shared/styles/colors.dart';
+
 
 Widget defaultButton({
   double width = double.infinity,
