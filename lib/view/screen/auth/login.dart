@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../controller/auth/login_controller.dart';
 import '../../../shared/constants/image_assets.dart';
 import '../../../shared/function/alertexitapp.dart';
@@ -15,11 +13,14 @@ import '../../widgets/default_text_button.dart';
 class LoginScreen extends StatelessWidget {
 
 
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     LoginControllerImplement controller= Get.put(LoginControllerImplement());
+    double width=MediaQuery.of(context).size.width;
+    double height=MediaQuery.of(context).size.height;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -34,13 +35,14 @@ class LoginScreen extends StatelessWidget {
             child: Form(
               key: controller.formState,
               child: Column(
+
                   children: [
-                    const SizedBox(height: 20,),
+                     SizedBox(height: height/40,),
                     const Image(image: AssetImage(AppImageAsset.logo),height: 150,width: 150),
 
                 Text("Welcome Back",style:Theme.of(context).textTheme.bodyLarge),
                    const Text("Login now to browse our hot offers"),
-                    const SizedBox(height: 30,),
+                    SizedBox(height: height/40,),
 
                     defaultFormField(
                       controller: controller.email,
@@ -53,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                       },
 
                     ),
-                    const SizedBox(height: 30,),
+                    SizedBox(height: height/40,),
 
                     GetBuilder<LoginControllerImplement>(
                         builder:(controller) =>  defaultFormField(
@@ -74,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                         ),),
 
 
-                    const SizedBox(height: 20,),
+                    SizedBox(height: height/40,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -91,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10,),
+                    SizedBox(height: height/60,),
                     // const SizedBox(height: 10,),
 
 
@@ -102,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                       },
 
                     ),
-                    const SizedBox(height: 10,),
+                    SizedBox(height: height/60,),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -12,6 +12,7 @@ import '../widgets/smooth_page_Indicator.dart';
 
 // ignore: must_be_immutable
 class OnBoardingScreen extends StatefulWidget {
+   // ignore: prefer_const_constructors_in_immutables
    OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
