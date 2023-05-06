@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/constants/routes.dart';
-import '../../shared/data/local/static.dart';
+import '../../data/local/static.dart';
 import '../../shared/services/services.dart';
 import '../../shared/styles/colors.dart';
 import '../widgets/build_onboarding_item.dart';

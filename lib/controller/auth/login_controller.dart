@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/constants/routes.dart';
@@ -41,6 +42,10 @@ class LoginControllerImplement extends LoginController{
 
   @override
   void onInit() {
+    FirebaseMessaging.instance.getToken().then((value) {
+      print(value);
+      String? token = value;
+    });
     email = TextEditingController();
     password = TextEditingController();
     super.onInit();

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
-import '../../shared/data/remote/status_request.dart';
+import '../../data/remote/status_request.dart';
+import '../../shared/constants/image_assets.dart';
 
 class HandlingDataView extends StatelessWidget {
   final StatusRequest statusRequest;
@@ -12,13 +14,13 @@ class HandlingDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return statusRequest == StatusRequest.loading
-        ?   const Center(child:CircularProgressIndicator())
+        ?   Center(child: Lottie.asset(AppImageAsset.loading , width: 250 , height: 250))
         : statusRequest == StatusRequest.offlineFailed
-        ? const Center(child: Text("Internet connection failed"))
+        ? Center(child: Lottie.asset(AppImageAsset.offLine , width: 250 , height: 250))
         : statusRequest == StatusRequest.serverFailed
-        ?const Center(child: Text("The server cannot be reached"))
+        ?Center(child: Lottie.asset(AppImageAsset.serverError , width: 250 , height: 250))
         : statusRequest == StatusRequest.failure
-        ? const Center(child:Text("There is no data to display") )
+        ? Center(child: Lottie.asset(AppImageAsset.noData , width: 250 , height: 250 , repeat: true  ))
         : widget;
   }
 }

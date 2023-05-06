@@ -11,9 +11,11 @@ Widget defaultFormField({
   bool isPassword = false,
   required String? Function(String?)? validate,
   @required String? label,
+  @required String? hint,
   @required IconData? prefix,
   IconData? suffix,
   double radius=10,
+
 
   // bool isClickable = true,
 
@@ -31,6 +33,7 @@ Widget defaultFormField({
 
       decoration: InputDecoration(
         labelText: label,
+        hintText: hint,
 
         border:  OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),

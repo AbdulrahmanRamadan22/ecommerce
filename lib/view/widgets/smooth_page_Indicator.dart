@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../shared/data/local/static.dart';
+import '../../data/local/static.dart';
 import '../../shared/styles/colors.dart';
 
 

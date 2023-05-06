@@ -11,7 +11,8 @@ class AppColor{
 
  static  const Color gray =  Color(0xff646464); //Sub Title
  static  const Color gray1 =  Colors.grey; //Sub Title
- static const Color gray2 = Color(0xfff2f3f7); //Continar
+ static  Color? gray2 = Colors.grey[200];
+ static  Color? gray3 = Colors.grey[100];//Continar
 
 }
 

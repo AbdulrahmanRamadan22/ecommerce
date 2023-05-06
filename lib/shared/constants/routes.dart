@@ -13,6 +13,10 @@ class AppRoute {
 
   static const String onBoarding= "/onBoarding" ;
 
+  static const String layout= "/layout" ;
+
+
+
 
 
 

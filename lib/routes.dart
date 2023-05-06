@@ -10,6 +10,7 @@ import 'package:store_app_advanced/view/screen/auth/register/success_register.da
 import 'package:store_app_advanced/view/screen/auth/register/verification_code_register_screen.dart';
 import 'package:store_app_advanced/view/screen/on_boarding.dart';
 
+import 'layout/layout.dart';
 import 'view/screen/auth/forgetpassword/success_reset_password.dart';
 
 
@@ -28,5 +29,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.successRegister, page: () => const SuccessRegisterScreen()),
   GetPage(name: AppRoute.onBoarding, page: () =>  OnBoardingScreen()),
   GetPage(name: AppRoute.verificationCodeRegister, page: () => const VerificationCodeRegisterScreen()),
+  GetPage(name: AppRoute.layout, page: () =>  const LayoutScreen()),
+
 
 ];

@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:store_app_advanced/shared/data/remote/status_request.dart';
 
-import '../../function/check_internet.dart';
 import 'package:dartz/dartz.dart';
+import 'package:store_app_advanced/data/remote/status_request.dart';
+
+import '../../shared/function/check_internet.dart';
 
 class Api {
   Future<Either<StatusRequest, Map<String, dynamic>>> getData({

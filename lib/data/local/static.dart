@@ -1,5 +1,5 @@
 import '../../../models/on_boarding_model.dart';
-import '../../constants/image_assets.dart';
+import '../../shared/constants/image_assets.dart';
 
 List<OnBoardingModel> onBoardingList = [
   OnBoardingModel(
