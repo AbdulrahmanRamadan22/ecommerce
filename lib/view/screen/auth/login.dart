@@ -4,9 +4,9 @@ import '../../../controller/auth/login_controller.dart';
 import '../../../shared/constants/image_assets.dart';
 import '../../../shared/function/alertexitapp.dart';
 import '../../../shared/function/valid_input.dart';
-import '../../widgets/default_button.dart';
-import '../../widgets/default_form_field.dart';
-import '../../widgets/default_text_button.dart';
+import '../../widgets/shared/default_button.dart';
+import '../../widgets/shared/default_form_field.dart';
+import '../../widgets/shared/default_text_button.dart';
 
 
 

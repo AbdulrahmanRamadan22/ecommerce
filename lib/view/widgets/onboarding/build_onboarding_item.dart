@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../models/on_boarding_model.dart';
-import '../../shared/styles/colors.dart';
+import '../../../models/on_boarding_model.dart';
+import '../../../shared/styles/colors.dart';
 
 Widget buildOnBoardingItem(OnBoardingModel onBoarding)=>Column(
   crossAxisAlignment: CrossAxisAlignment.center,

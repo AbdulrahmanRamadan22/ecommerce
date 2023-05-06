@@ -5,9 +5,9 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../controller/auth/register/register_controller.dart';
 import '../../../../shared/function/alertexitapp.dart';
 import '../../../../shared/function/valid_input.dart';
-import '../../../widgets/default_button.dart';
-import '../../../widgets/default_form_field.dart';
-import '../../../widgets/default_text_button.dart';
+import '../../../widgets/shared/default_button.dart';
+import '../../../widgets/shared/default_form_field.dart';
+import '../../../widgets/shared/default_text_button.dart';
 
 
 

@@ -4,10 +4,10 @@ import 'package:store_app_advanced/shared/constants/routes.dart';
 import '../../data/local/static.dart';
 import '../../shared/services/services.dart';
 import '../../shared/styles/colors.dart';
-import '../widgets/build_onboarding_item.dart';
-import '../widgets/default_button.dart';
-import '../widgets/default_text_button.dart';
-import '../widgets/smooth_page_Indicator.dart';
+import '../widgets/onboarding/build_onboarding_item.dart';
+import '../widgets/shared/default_button.dart';
+import '../widgets/shared/default_text_button.dart';
+import '../widgets/onboarding/smooth_page_Indicator.dart';
 
 
 // ignore: must_be_immutable
@@ -88,7 +88,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 defaultTextButton(
                   text: "Skip",
                   onPressed: () {
-                    Get.offAllNamed(AppRoute.login);
+
+                      myServices.sharedPreferences.setString("onboarding", "1");
+                      Get.offAllNamed(AppRoute.login);
+
+
+
                   },
                   fontSize: 20,
                   color: AppColor.black,

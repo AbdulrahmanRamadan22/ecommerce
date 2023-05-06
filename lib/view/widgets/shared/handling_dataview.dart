@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../data/remote/status_request.dart';
-import '../../shared/constants/image_assets.dart';
+import '../../../data/remote/status_request.dart';
+import '../../../shared/constants/image_assets.dart';
 
 class HandlingDataView extends StatelessWidget {
   final StatusRequest statusRequest;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/styles/colors.dart';
+import '../../../shared/styles/colors.dart';
 
 // ignore: non_constant_identifier_names
 Widget bannerCard()=>  Container(

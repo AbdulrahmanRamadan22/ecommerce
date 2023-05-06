@@ -15,6 +15,17 @@ class AppRoute {
 
   static const String layout= "/layout" ;
 
+  static const String home= "/home" ;
+  static const String favorite= "/favorite" ;
+  static const String category= "/category" ;
+  static const String cart= "/cart" ;
+
+
+
+
+
+
+
 
 
 

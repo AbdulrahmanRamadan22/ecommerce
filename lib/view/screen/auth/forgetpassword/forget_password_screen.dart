@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/constants/routes.dart';
 import '../../../../controller/auth/forget_password/forget_password_controller.dart';
-import '../../../widgets/default_button.dart';
-import '../../../widgets/default_form_field.dart';
+import '../../../widgets/shared/default_button.dart';
+import '../../../widgets/shared/default_form_field.dart';
 import '../register/register.dart';
 import 'verification_code_screen.dart';
 

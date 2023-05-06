@@ -1,10 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/services/services.dart';
 import 'package:store_app_advanced/shared/styles/themes.dart';
+import 'package:store_app_advanced/view/screen/home.dart';
 
-import 'firebase_options.dart';
 import 'layout/layout.dart';
 import 'routes.dart';
 
@@ -27,7 +26,7 @@ class StoreApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Store',
       theme: lightTheme,
-      // home: const LayoutScreen(),
+      home: const LayoutScreen(),
        );
   }
 }

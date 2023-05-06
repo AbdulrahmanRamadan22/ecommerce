@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/auth/forget_password/reset_password_controller.dart';
-import '../../../widgets/default_button.dart';
-import '../../../widgets/default_form_field.dart';
+import '../../../widgets/shared/default_button.dart';
+import '../../../widgets/shared/default_form_field.dart';
 
 
 class ResetPasswordScreen extends StatelessWidget {

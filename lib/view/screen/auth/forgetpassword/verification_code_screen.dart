@@ -5,7 +5,7 @@ import 'package:store_app_advanced/shared/styles/colors.dart';
 import '../../../../controller/auth/forget_password/verification_code_controller.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
-import '../../../widgets/default_button.dart';
+import '../../../widgets/shared/default_button.dart';
 import 'reset_password_screen.dart';
 class VerificationCodeScreen extends StatelessWidget {
   const VerificationCodeScreen({Key? key}) : super(key: key);

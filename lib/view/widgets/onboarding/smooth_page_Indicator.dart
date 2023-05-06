@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../data/local/static.dart';
-import '../../shared/styles/colors.dart';
+import '../../../data/local/static.dart';
+import '../../../shared/styles/colors.dart';
 
 
 Widget smoothPageIndicator({ var boardingController,}){

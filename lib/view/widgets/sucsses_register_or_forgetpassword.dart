@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/constants/routes.dart';
 
 import '../../shared/styles/colors.dart';
-import 'default_button.dart';
+import 'shared/default_button.dart';
 
   Widget success(
 {
