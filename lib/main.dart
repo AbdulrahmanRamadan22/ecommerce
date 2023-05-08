@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/services/services.dart';
 import 'package:store_app_advanced/shared/styles/themes.dart';
+import 'package:store_app_advanced/test.dart';
 import 'package:store_app_advanced/view/screen/home.dart';
+import 'package:store_app_advanced/view/test_view.dart';
 
+import 'bindings/intialbindings.dart';
 import 'layout/layout.dart';
 import 'routes.dart';
 
@@ -26,7 +29,7 @@ class StoreApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Store',
       theme: lightTheme,
-      home: const LayoutScreen(),
+      initialBinding: initialBindings(),
        );
   }
 }

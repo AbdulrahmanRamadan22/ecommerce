@@ -43,15 +43,14 @@ class RegisterScreen extends StatelessWidget{
                     const Text("Register now to browse our hot offers"),
                     const SizedBox(height: 30,),
                     defaultFormField(
-                      label: "User Name",
+                      label: "Name",
                       prefix: Icons.account_circle_outlined,
                       type: TextInputType.name,
-                      controller: controller.username,
+                      controller: controller.name,
                       validate: (value) {
-                        return validInput(value!,3,30,"username");
+                        return validInput(value!,3,30,"name");
 
-
-                      },
+                      }, hint: 'Enter Name',
 
                     ),
                     const SizedBox(height: 30,),
@@ -65,7 +64,7 @@ class RegisterScreen extends StatelessWidget{
                         return validInput(value!,5,30,"email");
 
 
-                      },
+                      }, hint: 'Enter Email Address',
 
 
                     ),
@@ -76,10 +75,10 @@ class RegisterScreen extends StatelessWidget{
                       type: TextInputType.phone,
                       controller: controller.phone,
                       validate: (value) {
-                        return validInput(value!,11,11,"phone");
+                        return validInput(value!,7,11,"phone");
 
 
-                      },
+                      }, hint: 'Enter Phone',
 
 
                     ),
@@ -96,16 +95,14 @@ class RegisterScreen extends StatelessWidget{
                         controller: controller.password,
 
                         suffixPressed: () {
-                          // setState(() {
-                          //   isPassword = !isPassword;
-                          // });
+                        controller.isShowPassword;
                         },
                       validate: (value) {
                         return validInput(value!,6,30,"password");
 
 
 
-                      },
+                      }, hint: 'Enter Password',
                     ),
 
                     const SizedBox(height: 30,),

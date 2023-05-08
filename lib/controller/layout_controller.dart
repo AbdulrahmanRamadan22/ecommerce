@@ -15,11 +15,11 @@ class LayoutScreenControllerImplement extends LayoutScreenController {
   int currentScreen = 0;
 
   List<Widget> listScreen = [
-     HomeScreen(),
-    CategoryScreen(),
+     const HomeScreen(),
+    const CategoryScreen(),
 
-    FavoriteScreen(),
-    CartScreen(),
+    const FavoriteScreen(),
+    const CartScreen(),
 
   ];
 

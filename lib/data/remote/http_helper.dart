@@ -8,15 +8,15 @@ import 'package:store_app_advanced/data/remote/status_request.dart';
 import '../../shared/function/check_internet.dart';
 
 class Api {
-  Future<Either<StatusRequest, Map<String, dynamic>>> getData({
+  Future<Either<StatusRequest, Map>> getData({
     required String url,
     String? token,
-    String lang = 'en',
+
   }) async {
     Map<String, String> headers = {};
     headers.addAll({
       'Content-Type': 'application/json',
-      'lang': lang,
+
     });
     if (token != null) {
       headers.addAll({
@@ -40,16 +40,15 @@ class Api {
     }
   }
 
-  Future<Either<StatusRequest, Map<String, dynamic>>> postData({
+  Future<Either<StatusRequest, Map>> postData({
     required String url,
     required dynamic body,
+
     String? token,
-    String lang = 'en',
   }) async {
     Map<String, String> headers = {};
     headers.addAll({
       'Content-Type': 'application/json',
-      'lang': lang,
     });
 
     if (token != null) {
@@ -60,10 +59,15 @@ class Api {
 
     if (await checkInternet()) {
       http.Response response = await http.post(Uri.parse(url),
-          body: jsonEncode(body), headers: headers);
+          body: jsonEncode(body),
+        headers: headers,
+      );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        Map<String, dynamic> data = jsonDecode(response.body);
+
+      print(response.statusCode);
+
+      if (response.statusCode == 201 || response.statusCode == 200) {
+        Map<String,dynamic> data = jsonDecode(response.body);
         print(data);
         return right(data);
       } else {
@@ -85,7 +89,7 @@ class Api {
     Map<String, String> headers = {};
     headers.addAll({
       'Content-Type': 'application/json',
-      'lang': lang,
+
     });
     if (token != null) {
       headers.addAll({

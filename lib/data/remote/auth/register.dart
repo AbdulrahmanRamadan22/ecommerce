@@ -2,20 +2,22 @@
 
 
 import '../http_helper.dart';
+import '../link_api.dart';
 
 class RegisterData {
 
   Api api;
   RegisterData(this.api);
   userRegister(
-      {required String username, required String password, required String email, required String phone}) async {
+      {required String name, required String phone,required String email,required String password,  }) async {
     var response = await api.postData(
-        url: "dvdd",
-        body: {
-        "username" : username ,
-        "password" : password  ,
-        "email" : email ,
-        "phone" : phone  ,
+        url: ApiLink.register,
+       body:{
+        "name" : name,
+         "phone" : phone,
+         "email" : email,
+        "password" : password,
+
         }
         );
     return response.fold((l) => l, (r) => r);
