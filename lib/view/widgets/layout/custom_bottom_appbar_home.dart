@@ -9,25 +9,34 @@ class CustomBottomAppBarLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double iconSize = MediaQuery.of(context).size.width * 0.05;
+    final double textSize = MediaQuery.of(context).size.width * 0.030;
+
     return GetBuilder<LayoutScreenControllerImplement>(
         builder: (controller) => BottomAppBar(
-            shape: const CircularNotchedRectangle(),
-            notchMargin: 10,
-            child: Row(
-              children: [
-                ...List.generate(controller.listScreen.length + 1, ((index) {
-                  int i = index > 2 ? index - 1 : index;
-                  return index == 2
-                      ? const Spacer()
-                      : CustomButtonAppBar(
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 10,
+          child: Row(
+            children: [
+              ...List.generate(controller.listScreen.length + 1,
+                  ((index) {
+                    int i = index > 2 ? index - 1 : index;
+                    return index == 2
+                        ? const Spacer()
+                        : CustomButtonAppBar(
                       textButton: controller.titleBottomAppbar[i],
-                      iconData:controller.iconBottom[i],
+                      iconData: controller.iconBottom[i],
                       onPressed: () {
                         controller.changeScreen(i);
                       },
-                      active: controller.currentScreen == i ? true : false);
-                }))
-              ],
-            )));
+                      active:
+                      controller.currentScreen == i ? true : false,
+                      iconSize: iconSize,
+                      textSize: textSize,
+                    );
+                  }))
+            ],
+          ),
+        ));
   }
 }

@@ -5,36 +5,42 @@ import 'package:store_app_advanced/shared/constants/routes.dart';
 import '../../shared/styles/colors.dart';
 import 'shared/default_button.dart';
 
-  Widget success(
-{
+Widget success({
   required String text,
-}
+}) {
+  double screenWidth = MediaQuery.of(Get.context!).size.width;
+  double screenHeight = MediaQuery.of(Get.context!).size.height;
 
-      ){
-
-  return  Container(
-    padding: const EdgeInsets.all(15),
+  return Container(
+    padding: EdgeInsets.all(screenWidth * 0.05),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-
-        children: [
-       const Center(
+      children: [
+        Center(
           child: Icon(
             Icons.check_circle_outline,
-            size: 200,
+            size: screenWidth * 0.5,
             color: AppColor.defaultColor,
-          )),
-      const Text("congratulations",style: TextStyle(fontSize: 30)),
-       Text(" $text",textAlign: TextAlign.center,style: TextStyle(fontSize: 24,)),
-
-
-      const Spacer(),
-      defaultButton(
-        text: "Go To Login",
+          ),
+        ),
+        Text(
+          "Congratulations",
+          style: TextStyle(fontSize: screenWidth * 0.06,fontWeight: FontWeight.w900),
+        ),
+        Text(
+          " $text",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: screenWidth * 0.05),
+        ),
+        const Spacer(),
+        defaultButton(
+          text: "Go To Login",
           onPressed: () {
-          Get.offAllNamed(AppRoute.login);
-          }),
-      const SizedBox(height: 30)
-    ]),
+            Get.offAllNamed(AppRoute.login);
+          },
+        ),
+        SizedBox(height: screenHeight * 0.02)
+      ],
+    ),
   );
 }

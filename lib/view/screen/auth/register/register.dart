@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
+import 'package:store_app_advanced/shared/function/alertexitapp.dart';
 import '../../../../controller/auth/register/register_controller.dart';
-import '../../../../shared/function/alertexitapp.dart';
+import '../../../../shared/constants/image_assets.dart';
 import '../../../../shared/function/valid_input.dart';
 import '../../../widgets/shared/default_button.dart';
 import '../../../widgets/shared/default_form_field.dart';
 import '../../../widgets/shared/default_text_button.dart';
+import '../../../widgets/shared/handling_dataview.dart';
 
-
-
-class RegisterScreen extends StatelessWidget{
-  bool isPassword=true;
-
-  RegisterScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    RegisterControllerImplement controller= Get.put(RegisterControllerImplement());
-
+    Get.put(RegisterControllerImplement());
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -27,120 +24,112 @@ class RegisterScreen extends StatelessWidget{
       ),
       body: WillPopScope(
         onWillPop: alertExitApp,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: SingleChildScrollView(
-            child: Form(
-              key: controller.formState,
-              child: Column(
-                  children: [
-                    const SizedBox(height: 20,),
-
-                    Text("Welcome Back", style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodyLarge),
-                    const Text("Register now to browse our hot offers"),
-                    const SizedBox(height: 30,),
-                    defaultFormField(
-                      label: "Name",
-                      prefix: Icons.account_circle_outlined,
-                      type: TextInputType.name,
-                      controller: controller.name,
-                      validate: (value) {
-                        return validInput(value!,3,30,"name");
-
-                      }, hint: 'Enter Name',
-
-                    ),
-                    const SizedBox(height: 30,),
-
-                    defaultFormField(
-                      label: "Email Address",
-                      prefix: Icons.email_outlined,
-                      type: TextInputType.emailAddress,
-                      controller: controller.email,
-                      validate: (value) {
-                        return validInput(value!,5,30,"email");
-
-
-                      }, hint: 'Enter Email Address',
-
-
-                    ),
-                    const SizedBox(height: 30,),
-                    defaultFormField(
-                      label: "Phone",
-                      prefix: Icons.phone,
-                      type: TextInputType.phone,
-                      controller: controller.phone,
-                      validate: (value) {
-                        return validInput(value!,7,11,"phone");
+        child: GetBuilder<RegisterControllerImplement>(
+          builder: (controller) => HandlingDataRequest(
+            statusRequest: controller.statusRequest,
+            widget: Padding(
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+              child: SingleChildScrollView(
+                child: Form(
+                  key: controller.formState,
+                  child: Column(
+                    children: [
+                      SizedBox(height: screenHeight * 0.03),
+                      Text(
+                        "Welcome Back",
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: screenWidth * 0.06),
+                      ),
+                      Text(
+                        "Register now to browse our hot offers",
+                        style: TextStyle(fontSize: screenWidth * 0.045), // set font size based on screen width
+                      ),
+                      SizedBox(height: screenHeight * 0.03),
+                      defaultFormField(
+                        controller: controller.name,
+                        label: "Name",
+                        prefix: Icons.person_outline,
+                        type: TextInputType.name,
+                        validate: (value) {
+                          return validInput(value!, 3, 100, "name");
+                        }, hint: 'Enter Name',
+                      ),
+                      SizedBox(height: screenHeight * 0.03),
+                      defaultFormField(
+                        controller: controller.email,
+                        label: "Email Address",
+                        prefix: Icons.email_outlined,
+                        type: TextInputType.emailAddress,
+                        validate: (value) {
+                          return validInput(value!, 5, 100, "email");
+                        }, hint: 'Enter Email Address ',
+                      ),
+                      SizedBox(height: screenHeight * 0.03),
+                      defaultFormField(
+                        label: "Phone",
+                        prefix: Icons.phone,
+                        type: TextInputType.phone,
+                        controller: controller.phone,
+                        validate: (value) {
+                          return validInput(value!,7,11,"phone");
 
 
-                      }, hint: 'Enter Phone',
+                        }, hint: 'Enter Phone',
 
 
-                    ),
-                    const SizedBox(height: 30,),
-
-
-                    defaultFormField(
-                        label: "Password",
-                        prefix: Icons.lock_outline,
-                        type: TextInputType.visiblePassword,
-                        suffix: isPassword ? Icons.visibility_outlined : Icons
-                            .visibility_off_outlined,
-                        isPassword: isPassword,
-                        controller: controller.password,
-
-                        suffixPressed: () {
-                        controller.isShowPassword;
-                        },
-                      validate: (value) {
-                        return validInput(value!,6,30,"password");
-
-
-
-                      }, hint: 'Enter Password',
-                    ),
-
-                    const SizedBox(height: 30,),
-
-                    defaultButton(
-                      text: "Register",
-                      onPressed: () {
-                        controller.register();
-                      },
-
-                    ),
-                    const SizedBox(height: 10,),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'have an account ?',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodySmall,
+                      ),
+                      SizedBox(height: screenHeight * 0.03),
+                      GetBuilder<RegisterControllerImplement>(
+                        builder: (controller) => defaultFormField(
+                          controller: controller.password,
+                          label: "Password",
+                          prefix: Icons.lock_outline,
+                          type: TextInputType.visiblePassword,
+                          suffix: controller.isShowPassword
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          isPassword: controller.isShowPassword,
+                          suffixPressed: () {
+                            controller.showPassword();
+                          },
+                          validate: (value) {
+                            return validInput(value!, 5, 30, "password");
+                          }, hint: 'Enter Password',
                         ),
-                        defaultTextButton(
+                      ),
+
+
+                      SizedBox(height: screenHeight * 0.05),
+                      defaultButton(
+                        text: "Register",
+                        onPressed: () {
+                          controller.register();
+                        },
+                      ),
+                      SizedBox(height: screenHeight * 0.02),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Already have an account?",
+                            style: TextStyle(fontSize: screenWidth * 0.04),
+                          ),
+                          defaultTextButton(
                             text: "Login Now",
                             onPressed: () {
-                            controller.goToLogin();
-                            }),
-                      ],
-                    )
-
-                  ]
+                              controller.goToLogin();
+                            },
+                            context: context, // set font size based on screen width
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
         ),
       ),
-
     );
   }
 }

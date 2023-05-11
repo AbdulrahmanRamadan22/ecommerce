@@ -1,6 +1,14 @@
 import 'package:flutter/cupertino.dart';
-import 'package:store_app_advanced/shared/styles/colors.dart';
 
-Widget titleHome(String title)=> Container(
-  margin: const EdgeInsets.symmetric(vertical: 10),
-    child:  Text(title,style: const TextStyle(fontSize: 24,)));
+Widget titleHome(String title,BuildContext context) {
+  return Container(
+    margin: const EdgeInsets.symmetric(vertical: 10),
+    child: Text(
+      title,
+      style: TextStyle(
+        fontSize: MediaQuery.of(context).size.width * 0.06,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  );
+}

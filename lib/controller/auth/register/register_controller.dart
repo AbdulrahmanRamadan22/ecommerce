@@ -21,7 +21,7 @@ class RegisterControllerImplement extends RegisterController {
 
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  late StatusRequest statusRequest;
+   StatusRequest statusRequest=StatusRequest.none;
   RegisterData registerData = RegisterData(Get.find()) ;
 
   bool isShowPassword=true;
@@ -33,16 +33,13 @@ class RegisterControllerImplement extends RegisterController {
   }
 
 
-  Iterable<MapEntry<String, dynamic>> data = [];
-
-
   @override
   register() async {
-    var formData = formState.currentState;
-    if (formData!.validate()) {
+    if (formState.currentState!.validate()) {
       statusRequest=StatusRequest.loading;
+      update();
 
-      Map response= await registerData.userRegister(
+      var response= await registerData.userRegister(
           name: name.text,
         phone: phone.text,
           email: email.text,
@@ -55,16 +52,18 @@ class RegisterControllerImplement extends RegisterController {
       if (StatusRequest.success == statusRequest) {
         // data.reactive(response['data']);
 
-        Get.offNamed(AppRoute.verificationCodeRegister);
-        Get.delete<RegisterControllerImplement>();
+        Get.offNamed(AppRoute.verificationCodeRegister,arguments: {
+          "email":email.text,
+        });
 
       }
       else{
         Get.defaultDialog(title: "ُWarning" , middleText: "Phone Number Or Email Already Exists") ;
         statusRequest=StatusRequest.failure;
+
       }
-       update();
-    } else { }
+    }
+    update();
   }
 
   @override

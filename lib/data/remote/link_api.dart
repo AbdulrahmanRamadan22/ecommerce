@@ -5,7 +5,11 @@ static const String home="home/get-home";
 
 //===========================Auth=======================
 static const String register="$server/users/register";
-  static const String login="users/login";
+  static const String verifyCode="$server/users/verify-code";
+  static const String login="$server/users/login";
+
+  //===========================forgetPassword=======================
+  static const String forgetPassword="$server/users/forget-password";
 
 
 

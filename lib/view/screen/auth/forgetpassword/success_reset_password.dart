@@ -13,7 +13,7 @@ class SuccessResetPasswordScreen extends StatelessWidget {
      appBar:AppBar(
        title: const Text("Success",style: TextStyle(fontSize: 24)),
      ),
-      body:success(text: "Password has been reset successfully") ,
+      body:success(text: "Password has been reset \n successfully") ,
     );
   }
 }

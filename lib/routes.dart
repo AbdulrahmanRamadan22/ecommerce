@@ -13,6 +13,7 @@ import 'package:store_app_advanced/view/screen/category.dart';
 import 'package:store_app_advanced/view/screen/favorite.dart';
 import 'package:store_app_advanced/view/screen/home.dart';
 import 'package:store_app_advanced/view/screen/on_boarding.dart';
+import 'package:store_app_advanced/view/screen/profile.dart';
 
 import 'layout/layout.dart';
 import 'view/screen/auth/forgetpassword/success_reset_password.dart';
@@ -40,6 +41,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.category, page: () =>  const CategoryScreen()),
 
 
+  GetPage(name: AppRoute.profile, page: () =>  const ProfileScreen()),
 
 
 ];

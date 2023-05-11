@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:store_app_advanced/view/screen/auth/cart.dart';
 import 'package:store_app_advanced/view/screen/category.dart';
 import 'package:store_app_advanced/view/screen/favorite.dart';
 
 import '../view/screen/home.dart';
+import '../view/screen/profile.dart';
 
 abstract class LayoutScreenController extends GetxController {
   changeScreen(int index);
@@ -15,32 +15,26 @@ class LayoutScreenControllerImplement extends LayoutScreenController {
   int currentScreen = 0;
 
   List<Widget> listScreen = [
-     const HomeScreen(),
+    const HomeScreen(),
     const CategoryScreen(),
-
     const FavoriteScreen(),
-    const CartScreen(),
-
+    const ProfileScreen(),
+    // const CartScreen(),
   ];
 
-  List  titleBottomAppbar = [
-    "Home" ,
-    "Category" ,
+  List titleBottomAppbar = [
+    "Home",
+    "Category",
+    "Favorite",
+    "Profile",
+  ];
 
-    "Profile" ,
-    "Favorite"
-  ] ;
-  List<IconData>  iconBottom = [
- Icons.home,
+  List<IconData> iconBottom = [
+    Icons.home,
     Icons.apps,
-    Icons.account_circle,
     Icons.favorite,
-
-
-
-
-  ] ;
-
+    Icons.account_circle,
+  ];
 
   @override
   // ignore: avoid_renaming_method_parameters

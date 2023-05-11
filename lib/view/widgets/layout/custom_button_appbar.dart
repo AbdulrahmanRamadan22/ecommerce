@@ -6,26 +6,44 @@ class CustomButtonAppBar extends StatelessWidget {
   final void Function()? onPressed;
   final String textButton;
   final IconData iconData;
-  final bool? active   ;
-  const CustomButtonAppBar(
-      {Key? key,
-        required this.textButton,
-        required this.iconData,
-        required this.onPressed,
-        required this.active})
-      : super(key: key);
+  final bool? active;
+  final double iconSize;
+  final double textSize;
+  const CustomButtonAppBar({
+    Key? key,
+    required this.textButton,
+    required this.iconData,
+    required this.onPressed,
+    required this.active,
+    required this.iconSize,
+    required this.textSize,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onPressed,
-      child: Column(mainAxisSize: MainAxisSize.min, children: [
-        Icon(iconData,
-            color: active == true ? AppColor.defaultColor : AppColor.gray1),
-        Text(textButton,
-            style: TextStyle(
-                color: active == true ? AppColor.defaultColor:AppColor.gray1))
-      ]),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            iconData,
+            size: iconSize,
+            color: active == true ? AppColor.defaultColor : AppColor.gray1,
+          ),
+          SizedBox(
+            height: textSize * 1.2,
+            child: Text(
+              textButton,
+              style: TextStyle(
+                fontSize: textSize,
+                color: active == true ? AppColor.defaultColor : AppColor.gray1,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

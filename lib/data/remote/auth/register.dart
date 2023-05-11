@@ -20,6 +20,7 @@ class RegisterData {
 
         }
         );
+    // ignore: non_constant_identifier_names
     return response.fold((l) => l, (r) => r);
   }
 

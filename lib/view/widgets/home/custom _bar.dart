@@ -2,39 +2,43 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/styles/colors.dart';
 
-// ignore: non_constant_identifier_names
-Widget CustomBar()=> Container(
-  margin: const EdgeInsets.only(top: 20),
-
-  child: Row(children: [
-    Expanded(
+Row customBar(BuildContext context) {
+  return Row(
+    children: [
+      Expanded(
         child: TextFormField(
-
           decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10),
-              prefixIcon: Icon(Icons.search),
-              hintText: "Find Product",
-              hintStyle: const TextStyle(fontSize: 18),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(10)),
-              filled: true,
-              fillColor: AppColor.gray2),
-        )),
-    SizedBox(width: 10),
-    Container(
-      decoration: BoxDecoration(
-          color:  AppColor.gray2,
-          borderRadius: BorderRadius.circular(10)),
-      width: 60,
-      padding: EdgeInsets.symmetric(vertical: 2),
-      child: IconButton(
+            contentPadding: const EdgeInsets.all(10),
+            prefixIcon:  Icon(Icons.search,size:MediaQuery.of(context).size.width * 0.06, ),
+            hintText: "Find Product",
+            hintStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            filled: true,
+            fillColor: AppColor.gray2,
+          ),
+        ),
+      ),
+      const SizedBox(width: 10),
+      Container(
+        decoration: BoxDecoration(
+          color: AppColor.gray2,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        width: MediaQuery.of(context).size.width * 0.14,
+        // height:MediaQuery.of(context).size.height /13,
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon:  Icon(
             Icons.notifications_active_outlined,
-            size: 30,
-            color: Colors.grey[600],
-          )),
-    )
-  ]),
-);
+            size:  MediaQuery.of(context).size.width * 0.06,
+            color: Colors.grey,
+          ),
+        ),
+      ),
+    ],
+  );
+}

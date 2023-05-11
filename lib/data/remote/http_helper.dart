@@ -11,7 +11,6 @@ class Api {
   Future<Either<StatusRequest, Map>> getData({
     required String url,
     String? token,
-
   }) async {
     Map<String, String> headers = {};
     headers.addAll({
@@ -25,7 +24,8 @@ class Api {
     }
 
     if (await checkInternet()) {
-      http.Response response = await http.get(Uri.parse(url), headers: headers);
+      http.Response response = await http.get(Uri.parse(url), headers: headers,
+      );
       if (response.statusCode == 200 || response.statusCode == 201) {
         Map<String, dynamic> data = jsonDecode(response.body);
         print(data);
@@ -71,12 +71,12 @@ class Api {
         print(data);
         return right(data);
       } else {
-        throw Exception(
-            ' ${left(StatusRequest.serverFailed)} There is a issue with the status code ${response.statusCode}');
+        return left(StatusRequest.serverFailed);
+
       }
     } else {
-      throw Exception(
-          ' ${left(StatusRequest.offlineFailed)}No internet connection please turn it on');
+      return left(StatusRequest.offlineFailed);
+
     }
   }
 
@@ -106,12 +106,10 @@ class Api {
         print(data);
         return right(data);
       } else {
-        throw Exception(' ${left(StatusRequest.serverFailed)} '
-            'There is a issue with the status code ${response.statusCode}'
-            'with body ${response.body} ');
+       return left(StatusRequest.serverFailed);
       }
     } else {
-      throw Exception('${left(StatusRequest.offlineFailed)}No internet connection please turn it on');
+      return left(StatusRequest.offlineFailed);
     }
   }
 }

@@ -9,24 +9,19 @@ import '../widgets/shared/default_button.dart';
 import '../widgets/shared/default_text_button.dart';
 import '../widgets/onboarding/smooth_page_Indicator.dart';
 
-
 // ignore: must_be_immutable
 class OnBoardingScreen extends StatefulWidget {
-   // ignore: prefer_const_constructors_in_immutables
-   OnBoardingScreen({Key? key}) : super(key: key);
+  OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-
   MyServices myServices = Get.find();
 
   var boardingController = PageController();
-
   bool isLast = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +37,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   setState(() {
                     isLast = true;
                   });
-                }
-                else {
+                } else {
                   setState(() {
                     isLast = false;
                   });
@@ -51,62 +45,47 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               },
               controller: boardingController,
               physics: const BouncingScrollPhysics(),
-
               itemBuilder: (context, index) =>
-                  buildOnBoardingItem(onBoardingList[index]),
+                  buildOnBoardingItem(onBoardingList[index], context),
               itemCount: onBoardingList.length,
-
-
             ),
           ),
-
           Expanded(
             flex: 2,
-            child: Column(children: [
-              smoothPageIndicator(boardingController: boardingController),
-
-              const Spacer(),
+            child: Column(
+              children: [
+                smoothPageIndicator(boardingController: boardingController),
+                const Spacer(),
                 defaultButton(
                   text: "Continue",
                   onPressed: () {
                     if (isLast) {
                       myServices.sharedPreferences.setString("onboarding", "1");
                       Get.offAllNamed(AppRoute.login);
-                    }
-                    else {
+                    } else {
                       boardingController.nextPage(
-                          duration: const Duration(
-                            milliseconds: 750,
-                          ),
-                          curve: Curves.fastLinearToSlowEaseIn);
+                        duration: const Duration(milliseconds: 750),
+                        curve: Curves.fastLinearToSlowEaseIn,
+                      );
                     }
                   },
                   width: 300,
-
-
                 ),
                 defaultTextButton(
                   text: "Skip",
                   onPressed: () {
-
-                      myServices.sharedPreferences.setString("onboarding", "1");
-                      Get.offAllNamed(AppRoute.login);
-
-
-
+                    myServices.sharedPreferences.setString("onboarding", "1");
+                    Get.offAllNamed(AppRoute.login);
                   },
                   fontSize: 20,
-                  color: AppColor.black,
-
+                  color: AppColor.black, context: context,
                 ),
-
-                const SizedBox(height: 10,),
+                const SizedBox(height: 10),
               ],
             ),
           ),
         ],
       ),
-
     );
   }
 }

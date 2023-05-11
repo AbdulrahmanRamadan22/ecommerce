@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../firebase_options.dart';
 
+
 class MyServices extends GetxService {
 
   late SharedPreferences sharedPreferences ;
@@ -20,5 +21,5 @@ class MyServices extends GetxService {
 }
 
 initialServices() async  {
-  await Get.putAsync(() => MyServices().init()) ;
+  await Get.putAsync(() => MyServices().init());
 }
