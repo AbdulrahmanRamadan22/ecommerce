@@ -11,6 +11,7 @@ class Api {
   Future<Either<StatusRequest, Map>> getData({
     required String url,
     String? token,
+    Map<String, String>? body,
   }) async {
     Map<String, String> headers = {};
     headers.addAll({
@@ -41,7 +42,6 @@ class Api {
   Future<Either<StatusRequest, Map>> postData({
     required String url,
     required dynamic body,
-
     String? token,
   }) async {
     Map<String, String> headers = {};

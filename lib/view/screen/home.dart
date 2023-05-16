@@ -35,11 +35,11 @@ class HomeScreen extends StatelessWidget {
                         onIconSearch: () {  }),
                     bannerCard(),
                     titleHome("Category", context),
-                    const CategoryHome(),
+                    const CategoryItem(),
 
                     titleHome("Products", context),
 
-                    const ProductHome(),
+                    const ListsProductItem(),
                   ],
                 ),
               ),

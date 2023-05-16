@@ -7,13 +7,16 @@ import '../shared/function/handing_datacontroller.dart';
 import '../shared/services/services.dart';
 
 abstract class HomeController extends GetxController {
-  Future<void> initialData();
+  initialData();
   Future<void> getData();
-  goTOProduct(List categories, int selectedCat);
+  goToItems(List categories, int selectedCat, String categoryid);
+
 }
 
 class HomeControllerImplement extends HomeController {
+
   MyServices myServices = Get.find();
+
 
   late String token;
   String? name;
@@ -23,6 +26,7 @@ class HomeControllerImplement extends HomeController {
   String? image;
   int? points;
   int? credit;
+
 
   HomeData homeData = HomeData(Get.find());
 
@@ -47,9 +51,10 @@ class HomeControllerImplement extends HomeController {
 
   @override
   void onInit() {
-    super.onInit();
     initialData();
     getData();
+    super.onInit();
+
   }
 
   @override
@@ -61,9 +66,7 @@ class HomeControllerImplement extends HomeController {
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == true) {
-        categories.clear();
         categories.addAll(response["data"]['categories']);
-        products.clear();
         products.addAll(response["data"]['products']);
       } else {
         statusRequest = StatusRequest.failure;
@@ -73,12 +76,11 @@ class HomeControllerImplement extends HomeController {
   }
 
   @override
-  goTOProduct(categories, selectedCat) {
-   Get.toNamed(AppRoute.product,
-     arguments: {
-       "categories": categories,
-       "selectedcat": selectedCat
-     }
-   );
+  goToItems(categories, selectedCat, categoryid) {
+    Get.toNamed(AppRoute.product, arguments: {
+      "categories": categories,
+      "selectedcat": selectedCat,
+      "catid": categoryid
+    });
   }
 }

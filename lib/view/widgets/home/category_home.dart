@@ -6,8 +6,8 @@ import '../../../controller/home_controller.dart';
 import '../../../models/home_model.dart';
 import '../../../shared/styles/colors.dart';
 
-class CategoryHome extends GetView<HomeControllerImplement> {
-  const CategoryHome({Key? key}) : super(key: key);
+class CategoryItem extends GetView<HomeControllerImplement> {
+  const CategoryItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class BuildCategoryItem extends GetView<HomeControllerImplement> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        controller.goTOProduct(controller.categories,i!);
+        controller.goToItems(controller.categories, i! , categoriesModel.id.toString()!);
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.29,

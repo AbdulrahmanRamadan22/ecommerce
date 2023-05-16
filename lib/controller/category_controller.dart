@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../data/helper/status_request.dart';
 import '../data/remote/category.dart';
+import '../data/remote/home.dart';
 import '../shared/function/handing_datacontroller.dart';
 import '../shared/services/services.dart';
 

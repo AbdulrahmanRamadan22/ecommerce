@@ -16,7 +16,7 @@ static const String register="$server/users/register";
   static const String resetPassword="$server/users/reset";
   //===========================product=======================
 
-  // static const String product="$server/products/get-product";
+  static const String product="$server/products/get-product";
 
 
 }

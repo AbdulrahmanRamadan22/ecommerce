@@ -7,8 +7,8 @@ import '../../../controller/home_controller.dart';
 import '../../../models/home_model.dart';
 
 
-class ProductHome extends GetView<HomeControllerImplement> {
-  const ProductHome({Key? key}) : super(key: key);
+class ListsProductItem extends GetView<HomeControllerImplement> {
+  const ListsProductItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
