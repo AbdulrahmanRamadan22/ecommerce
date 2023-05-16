@@ -6,6 +6,8 @@ class AppColor{
 //default App
  static const Color white = Colors.white;
  static  const Color black = Colors.black;
+ static  const Color red = Colors.red;
+
 
  static const Color dark =  Color(0xff333739);
 

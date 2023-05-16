@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../data/remote/auth/verification_code_register.dart';
-import '../../../data/remote/status_request.dart';
+import '../../../data/remote/auth/register/verification_code_register.dart';
+import '../../../data/helper/status_request.dart';
 import '../../../shared/constants/routes.dart';
 import '../../../shared/function/handing_datacontroller.dart';
+import '../../../shared/styles/colors.dart';
+import '../../../view/widgets/shared/toast_api.dart';
 
 abstract class VerificationCodeRegisterController extends GetxController {
   checkCode();
@@ -14,6 +16,7 @@ abstract class VerificationCodeRegisterController extends GetxController {
 class VerificationCodeRegisterControllerImplement extends VerificationCodeRegisterController {
 
   String?email;
+
   StatusRequest statusRequest=StatusRequest.none;
 
 
@@ -30,8 +33,6 @@ class VerificationCodeRegisterControllerImplement extends VerificationCodeRegist
 
     statusRequest=StatusRequest.loading;
     update();
-
-
     var response= await verificationCodeRegisterData.verificationCodeRegister(
       email: email!,
       code:verfiyCodeSignUp ,
@@ -46,9 +47,12 @@ class VerificationCodeRegisterControllerImplement extends VerificationCodeRegist
       // Get.delete<VerificationCodeRegisterControllerImplement>();
     }
     else{
-      Get.defaultDialog(
-          title: "ُWarning",
-          middleText: "Verify Code Not Correct");
+
+      showToast(
+          msg: "Verify Code Not Correct",
+          backgroundColor:AppColor.red
+      );
+
       statusRequest=StatusRequest.failure;
     }
     update();

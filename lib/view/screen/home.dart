@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store_app_advanced/view/widgets/shared/handling_dataview.dart';
 
+import '../../controller/home_controller.dart';
 import '../widgets/home/banner.dart';
-import '../widgets/home/build_category.dart';
-import '../widgets/home/build_prodect_item.dart';
-import '../widgets/home/custom _bar.dart';
+import '../widgets/home/category_home.dart';
+import '../widgets/home/prodect_home.dart';
+import '../widgets/shared/custom _bar.dart';
 import '../widgets/home/title_home.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,52 +14,38 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     Get.put(HomeControllerImplement());
+
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            children: [
-              customBar(context),
-              bannerCard(),
-              titleHome("Category", context),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 8,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => buildCategoryItem(context),
-                  separatorBuilder: (context, index) => const SizedBox(width: 10),
-                  itemCount: 10,
+      body: GetBuilder<HomeControllerImplement>(
+        builder: (controller) {
+          return HandlingDataView(
+            statusRequest: controller.statusRequest,
+            widget:
+             SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ListView(
+                  physics: const BouncingScrollPhysics(),
+                  children: [
+                    customBar
+                      (context: context,
+                        hintText:"Find Product" ,
+                        onChanged: (String value) {  },
+                        onIconSearch: () {  }),
+                    bannerCard(),
+                    titleHome("Category", context),
+                    const CategoryHome(),
+
+                    titleHome("Products", context),
+
+                    const ProductHome(),
+                  ],
                 ),
               ),
-              titleHome("Products", context),
-              LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  const crossAxisCount = 2;
-                  final childAspectRatio =
-                      constraints.maxWidth / (crossAxisCount * 300);
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    // padding: const EdgeInsets.all(10),
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: crossAxisCount,
-                      childAspectRatio: childAspectRatio,
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 5,
-                    ),
-                    itemCount: 4, // Replace with the actual number of items
-                    itemBuilder: (BuildContext context, int index) {
-                      return const ProductItem();
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        }
       ),
     );
   }

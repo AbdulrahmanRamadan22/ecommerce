@@ -1,8 +1,8 @@
 
 
 
-import '../http_helper.dart';
-import '../link_api.dart';
+import '../../../helper/http_helper.dart';
+import '../../../helper/link_api.dart';
 
 class RegisterData {
 

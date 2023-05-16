@@ -17,3 +17,4 @@ class SuccessResetPasswordScreen extends StatelessWidget {
     );
   }
 }
+

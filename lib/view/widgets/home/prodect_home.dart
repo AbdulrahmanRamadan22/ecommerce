@@ -1,9 +1,57 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/styles/colors.dart';
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({Key? key}) : super(key: key);
+import '../../../controller/home_controller.dart';
+import '../../../models/home_model.dart';
 
+
+class ProductHome extends GetView<HomeControllerImplement> {
+  const ProductHome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return  LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        const crossAxisCount = 2;
+        final childAspectRatio =
+            constraints.maxWidth / (crossAxisCount * 300);
+        return GridView.builder(
+          shrinkWrap: true,
+          // padding: const EdgeInsets.all(10),
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate:
+          SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            childAspectRatio: childAspectRatio,
+            mainAxisSpacing: 5,
+            crossAxisSpacing: 5,
+          ),
+          itemCount: controller.products.length, // Replace with the actual number of items
+          itemBuilder: (BuildContext context, int index) {
+            return  ProductItem(
+                productsModel: Products.fromJson(controller.products[index]),
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+class ProductItem extends StatelessWidget {
+  const ProductItem({Key? key, required this.productsModel}) : super(key: key);
+  final Products productsModel;
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -31,8 +79,9 @@ class ProductItem extends StatelessWidget {
               child: Stack(
                 alignment: AlignmentDirectional.bottomStart,
                 children: [
-                  Image(
-                    image: AssetImage("assets/images/redme.png"),
+                  CachedNetworkImage(
+
+                     imageUrl: ("${productsModel.image}"),
                     width: double.infinity,
                     height: 130,
 
@@ -53,7 +102,7 @@ class ProductItem extends StatelessWidget {
               height: 10,
             ),
             Text(
-              "SAMSUNG Galaxy S22 Ultra Cell Phone, Factory Unlocked Android Smartphone, 512GB, 8K Camera & Video, Brightest Display Screen, S Pen, Long Battery Life, Fast 4nm Processor, US Version, Green",
+              "${productsModel.name}",
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               style: TextStyle(
@@ -66,7 +115,7 @@ class ProductItem extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "500 EGP",
+                  "${productsModel.price}",
                   style: TextStyle(
                     color: Colors.blue,
                     fontSize: screenSize.width * 0.04,
@@ -76,7 +125,7 @@ class ProductItem extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  "500",
+                  "${productsModel.oldPrice}",
                   style: TextStyle(
                     fontSize: screenSize.width * 0.038,
                     decoration: TextDecoration.lineThrough,

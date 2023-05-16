@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../controller/test.dart';
 
 class ProfileScreen  extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -6,6 +9,15 @@ class ProfileScreen  extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Text("Profile Screen");
+    HomeControllerImp controller = Get.put(HomeControllerImp());
+
+    return  Column(
+      children: [
+        Text("${controller.token}"),
+        Text("${controller.email}"),
+        // Text("${controller.token}"),
+
+      ],
+    );
   }
 }

@@ -1,34 +1,40 @@
-// import 'package:get/get.dart';
-//
-// import '../data/remote/status_request.dart';
-// import '../data/remote/test_data.dart';
-// import '../shared/function/handing_datacontroller.dart';
-//
-// class TestController extends GetxController {
-//   TestData testData = TestData(Get.find()) ;
-//
-//
-//
-//
-//   List<dynamic> data = [];
-//
-//
-//   late StatusRequest statusRequest;
-//
-//   getData() async {
-//     statusRequest = StatusRequest.loading;
-//     var response = await testData.getData();
-//     print("=============================== Controller $response ") ;
-//     statusRequest = handlingData(response);
-//     if (StatusRequest.success == statusRequest) {
-//       data.addAll(response['data']);
-//     }
-//     update();
-//   }
-//
-//   @override
-//   void onInit() {
-//     getData();
-//     super.onInit();
-//   }
-// }
+import 'package:get/get.dart';
+
+import '../shared/services/services.dart';
+
+class HomeController extends GetxController {}
+
+class HomeControllerImp extends HomeController {
+  MyServices myServices = Get.find();
+
+  String? name;
+  int? id;
+  String? email;
+  String? phone;
+  String? image;
+  int? points;
+  int? credit;
+  String? token;
+
+  initialData() {
+
+    name = myServices.sharedPreferences.getString("name") ;
+
+    id = myServices.sharedPreferences.getInt("id");
+    email = myServices.sharedPreferences.getString("email") ;
+    phone = myServices.sharedPreferences.getString("phone") ;
+    image = myServices.sharedPreferences.getString("image") ;
+
+    points = myServices.sharedPreferences.getInt("points");
+    credit = myServices.sharedPreferences.getInt("credit");
+
+    token = myServices.sharedPreferences.getString("token") ;
+
+  }
+
+  @override
+  void onInit() {
+    initialData();
+    super.onInit();
+  }
+}

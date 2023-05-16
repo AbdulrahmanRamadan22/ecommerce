@@ -12,7 +12,7 @@ class SuccessRegisterScreen extends StatelessWidget {
      appBar:AppBar(
        title: const Text("Success",style: TextStyle(fontSize: 24)),
      ),
-      body:success(text: "successfully registered") ,
+      body:success(text: "Registration done successfully \n and activity email") ,
     );
   }
 }

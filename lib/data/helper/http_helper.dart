@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:dartz/dartz.dart';
-import 'package:store_app_advanced/data/remote/status_request.dart';
+import 'package:store_app_advanced/data/helper/status_request.dart';
 
 import '../../shared/function/check_internet.dart';
 
@@ -19,7 +19,7 @@ class Api {
     });
     if (token != null) {
       headers.addAll({
-        'Authorization': 'Bearer$token',
+        'Authorization': 'Bearer $token',
       });
     }
 
@@ -29,14 +29,12 @@ class Api {
       if (response.statusCode == 200 || response.statusCode == 201) {
         Map<String, dynamic> data = jsonDecode(response.body);
         print(data);
-        return right(data);
+        return Right(data);
       } else {
-        throw Exception(
-            ' ${left(StatusRequest.serverFailed)} There is a issue with the status code ${response.statusCode}');
+        return const Left(StatusRequest.serverFailed);
       }
     } else {
-      throw Exception(
-          ' ${left(StatusRequest.offlineFailed)}No internet connection please turn it on');
+      return const Left(StatusRequest.offlineFailed);
     }
   }
 
@@ -69,14 +67,12 @@ class Api {
       if (response.statusCode == 201 || response.statusCode == 200) {
         Map<String,dynamic> data = jsonDecode(response.body);
         print(data);
-        return right(data);
+        return Right(data);
       } else {
-        return left(StatusRequest.serverFailed);
-
+        return const Left(StatusRequest.serverFailed);
       }
     } else {
-      return left(StatusRequest.offlineFailed);
-
+      return const Left(StatusRequest.offlineFailed);
     }
   }
 
@@ -108,8 +104,11 @@ class Api {
       } else {
        return left(StatusRequest.serverFailed);
       }
+
     } else {
       return left(StatusRequest.offlineFailed);
     }
+
+
   }
 }

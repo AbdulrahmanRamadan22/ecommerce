@@ -18,13 +18,4 @@ class AppImageAsset {
   static const String offLine = "$roteLottie/offline.json";
   static const String serverError = "$roteLottie/server-error.json";
 
-
-
-
-
-
-
-
-
-
 }

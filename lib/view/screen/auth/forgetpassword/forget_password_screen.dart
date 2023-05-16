@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/constants/routes.dart';
 import '../../../../controller/auth/forget_password/forget_password_controller.dart';
+import '../../../../shared/function/valid_input.dart';
 import '../../../widgets/shared/default_button.dart';
 import '../../../widgets/shared/default_form_field.dart';
 import '../../../widgets/shared/default_text_button.dart';
@@ -36,15 +37,16 @@ class ForgetPasswordScreen extends StatelessWidget {
                   prefix: Icons.email_outlined,
                   controller: controller.email,
                   validate: (value) {
-
-                  }, type: TextInputType.emailAddress,
+                    return validInput(value!, 5, 100, "email");
+                  },
+                  type: TextInputType.emailAddress,
                   hint: 'Enter Email Address',
                 ),
                 SizedBox(height: screenHeight * 0.05),
                 defaultButton(
                   text: "Send",
                   onPressed: (){
-                    controller.goTOVerificationCode();
+                    controller.checkEmail();
                   },
                 ),
                 SizedBox(height: screenHeight * 0.05),

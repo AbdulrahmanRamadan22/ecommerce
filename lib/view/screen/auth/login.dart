@@ -73,6 +73,7 @@ class LoginScreen extends StatelessWidget {
                             controller.showPassword();
                           },
                           validate: (value) {
+
                             return validInput(value!, 5, 30, "password");
                           }, hint: 'Enter Password',
                         ),

@@ -2,15 +2,29 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/styles/colors.dart';
 
-Row customBar(BuildContext context) {
+Row customBar({
+  required BuildContext context,
+  required String hintText,
+  required Function(String value) onChanged,
+  required Function() onIconSearch,
+
+
+
+}) {
   return Row(
     children: [
       Expanded(
         child: TextFormField(
+          onChanged: onChanged,
+
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(10),
-            prefixIcon:  Icon(Icons.search,size:MediaQuery.of(context).size.width * 0.06, ),
-            hintText: "Find Product",
+            prefixIcon:  IconButton(
+              icon: Icon(Icons.search,size:MediaQuery.of(context).size.width * 0.06, ),
+              onPressed: onIconSearch,
+
+            ),
+            hintText: hintText,
             hintStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),
             border: OutlineInputBorder(
               borderSide: BorderSide.none,

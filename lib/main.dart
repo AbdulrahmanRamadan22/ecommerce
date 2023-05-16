@@ -1,32 +1,27 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store_app_advanced/layout/layout.dart';
 import 'package:store_app_advanced/shared/services/services.dart';
 import 'package:store_app_advanced/shared/styles/themes.dart';
-
-
 import 'bindings/intialbindings.dart';
 import 'routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialServices();
-
   runApp(
 
     DevicePreview(
       enabled: true,
-
-      builder: (context) => const StoreApp(),
+      builder: (context) => const EcommerceApp(),
     ),
   );
 
 }
 
 
-class StoreApp extends StatelessWidget {
-  const StoreApp({super.key});
+class EcommerceApp extends StatelessWidget {
+  const EcommerceApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -37,10 +32,9 @@ class StoreApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       getPages:routes,
       debugShowCheckedModeBanner: false,
-      title: 'Store',
+      title: 'Ecommerce',
       theme: lightTheme,
       initialBinding: initialBindings(),
-
        );
   }
 }

@@ -1,10 +1,12 @@
-import '../http_helper.dart';
-import '../link_api.dart';
+import '../../../models/login_model.dart';
+import '../../helper/http_helper.dart';
+import '../../helper/link_api.dart';
 
 class LoginData {
 
   Api api;
   LoginData(this.api);
+
   userLogin(
       {required String email, required String password,}) async {
     var response = await api.postData(
@@ -16,7 +18,7 @@ class LoginData {
         }
     );
     // ignore: non_constant_identifier_names
-    return response.fold((Left) => Left, (Right) => Right);
+    return response.fold((l) => l, (r) => r);
   }
 
 

@@ -1,5 +1,5 @@
 
-import '../../data/remote/status_request.dart';
+import '../../data/helper/status_request.dart';
 
 handlingData(response){
   if (response is StatusRequest){

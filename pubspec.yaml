@@ -52,10 +52,11 @@ dependencies:
 
   #api
   http: ^0.13.5
-  dio: ^5.1.2
+  fluttertoast: ^8.2.1
+
 
   # Images
-#  cached_network_image: ^3.2.0
+  cached_network_image: ^3.2.3
 #  image_picker: ^0.7.2+1
 
   # Animate

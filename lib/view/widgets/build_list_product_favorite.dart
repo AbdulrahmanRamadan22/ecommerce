@@ -26,9 +26,9 @@ height: 120,
                   horizontal: 5.0,
                   vertical: 2.0,
                 ),
-                child: Text(
+                child: const Text(
                   'DISCOUNT',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 8.0,
                     color: Colors.white,
                   ),

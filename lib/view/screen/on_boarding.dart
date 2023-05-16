@@ -11,7 +11,7 @@ import '../widgets/onboarding/smooth_page_Indicator.dart';
 
 // ignore: must_be_immutable
 class OnBoardingScreen extends StatefulWidget {
-  OnBoardingScreen({Key? key}) : super(key: key);
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -60,8 +60,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   text: "Continue",
                   onPressed: () {
                     if (isLast) {
-                      myServices.sharedPreferences.setString("onboarding", "1");
-                      Get.offAllNamed(AppRoute.login);
+                      myServices.sharedPreferences.setString("step", "1");                      Get.offAllNamed(AppRoute.login);
                     } else {
                       boardingController.nextPage(
                         duration: const Duration(milliseconds: 750),
@@ -74,7 +73,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 defaultTextButton(
                   text: "Skip",
                   onPressed: () {
-                    myServices.sharedPreferences.setString("onboarding", "1");
+                    myServices.sharedPreferences.setString("step", "1");
                     Get.offAllNamed(AppRoute.login);
                   },
                   fontSize: 20,

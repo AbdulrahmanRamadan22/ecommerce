@@ -20,6 +20,7 @@ class AppRoute {
   static const String category= "/category" ;
   static const String cart= "/cart" ;
   static const String profile= "/profile" ;
+  static const String product= "/product" ;
 
 
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../data/remote/status_request.dart';
+import '../../../data/helper/status_request.dart';
 import '../../../shared/constants/image_assets.dart';
 
 class HandlingDataView extends StatelessWidget {
@@ -14,13 +14,20 @@ class HandlingDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return statusRequest == StatusRequest.loading
-        ?   Center(child: Lottie.asset(AppImageAsset.loading , width: 250 , height: 250))
+        ? Center(
+        child: Lottie.asset(AppImageAsset.loading, width: 250, height: 250))
         : statusRequest == StatusRequest.offlineFailed
-        ? Center(child: Lottie.asset(AppImageAsset.offLine , width: 250 , height: 250))
+        ? Center(
+        child: Lottie.asset(AppImageAsset.offLine,
+            width: 250, height: 250))
         : statusRequest == StatusRequest.serverFailed
-        ?Center(child: Lottie.asset(AppImageAsset.serverError , width: 250 , height: 250))
+        ? Center(
+        child: Lottie.asset(AppImageAsset.serverError,
+            width: 250, height: 250))
         : statusRequest == StatusRequest.failure
-        ? Center(child: Lottie.asset(AppImageAsset.noData , width: 250 , height: 250 , repeat: true  ))
+        ? Center(
+        child: Lottie.asset(AppImageAsset.noData,
+            width: 250, height: 250, repeat: true))
         : widget;
   }
 }
@@ -44,10 +51,6 @@ class HandlingDataRequest extends StatelessWidget {
         : statusRequest == StatusRequest.serverFailed
         ? Center(
         child: Lottie.asset(AppImageAsset.serverError,
-            width: 250, height: 250))
-        : statusRequest == StatusRequest.failure
-        ? Center(
-        child: Lottie.asset(AppImageAsset.noData,
             width: 250, height: 250))
         : widget;
   }

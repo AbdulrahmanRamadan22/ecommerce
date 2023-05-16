@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/function/alertexitapp.dart';
 import '../../../../controller/auth/register/register_controller.dart';
-import '../../../../shared/constants/image_assets.dart';
 import '../../../../shared/function/valid_input.dart';
 import '../../../widgets/shared/default_button.dart';
 import '../../../widgets/shared/default_form_field.dart';

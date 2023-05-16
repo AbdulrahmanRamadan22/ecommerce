@@ -2,24 +2,36 @@ import 'package:get/get.dart';
 
 validInput(String val, int min, int max, String type) {
   if (type == "name") {
+    if (val.isEmpty) {
+      return "The name field is required";
+    }
     if (!GetUtils.isUsername(val)) {
-      return "Please Enter Name";
+      return "not valid name";
     }
   }
   if (type == "email") {
-    if (!GetUtils.isEmail(val)) {
-      return "Please Enter Email";
+    if (val.isEmpty) {
+      return "The email field is required";
     }
+    if (!GetUtils.isEmail(val)) {
+      return "not valid email";
+    }
+
+
   }
 
+
   if (type == "phone") {
+    if (val.isEmpty) {
+      return "The phone field is required";
+    }
     if (!GetUtils.isPhoneNumber(val)) {
-      return "Please Enter phone";
+      return "not valid phone";
     }
   }
 
   if (val.isEmpty) {
-    return "can't be Empty";
+    return "The password field is required";
   }
 
   if (val.length < min) {

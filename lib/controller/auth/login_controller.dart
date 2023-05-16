@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/constants/routes.dart';
 
 import '../../data/remote/auth/login.dart';
-import '../../data/remote/status_request.dart';
+import '../../data/helper/status_request.dart';
 import '../../shared/function/handing_datacontroller.dart';
 import '../../shared/services/services.dart';
+import '../../shared/styles/colors.dart';
+import '../../view/widgets/shared/toast_api.dart';
 
 abstract class LoginController extends GetxController {
   // ignore: non_constant_identifier_names
@@ -21,13 +23,14 @@ class LoginControllerImplement extends LoginController{
 
   late TextEditingController email;
   late TextEditingController password;
-
   bool isShowPassword=true;
 
   StatusRequest statusRequest=StatusRequest.none;
 
   LoginData loginData = LoginData(Get.find()) ;
+
   MyServices myServices = Get.find();
+
 
 
   showPassword(){
@@ -45,21 +48,45 @@ class LoginControllerImplement extends LoginController{
         email: email.text,
         password: password.text,
       );
-
       print("=============================== Controller $response ") ;
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
-        Get.offNamed(AppRoute.layout);
-      }
-      else{
-        statusRequest=StatusRequest.serverFailed;
-        Get.defaultDialog(title: "ُWarning" , middleText: " Email Or password Not Correct") ;
+        if(response["status"]==true)
+          {
+            showToast(
+                msg: "Login done successfully",
+                backgroundColor:AppColor.defaultColor
+            );
 
+            myServices.sharedPreferences.setInt("id", response['data']['id']);
+            myServices.sharedPreferences.setString("name", response['data']['name']) ;
+            myServices.sharedPreferences.setString("email", response['data']['email']) ;
+            myServices.sharedPreferences.setString("phone", response['data']['phone']) ;
+            myServices.sharedPreferences.setString("image", response['data']['image']) ;
+            myServices.sharedPreferences.setString("token", response['data']['token']) ;
+            myServices.sharedPreferences.setInt("points", response['data']['points']);
+            myServices.sharedPreferences.setInt("credit", response['data']['credit']);
+            // myServices.sharedPreferences.setString("step","2") ;
+
+            Get.offNamed(AppRoute.layout, arguments: {
+              "token":myServices.sharedPreferences.getString("token"),
+            });
+
+
+
+          }
+        else{
+          showToast(
+              msg: "Email Or password Not Correct",
+              backgroundColor:AppColor.red
+          );
+          statusRequest = StatusRequest.failure;
+        }
+        update();
       }
       update();
     }
-    else {}
-    update();
+    // update();
   }
 
 
@@ -71,9 +98,10 @@ class LoginControllerImplement extends LoginController{
   @override
   void onInit() {
     FirebaseMessaging.instance.getToken().then((value) {
-      print("token $value");
-      String? token = value;
+      // print("token $value");
+      // String? token = value;
     });
+
     email = TextEditingController();
     password = TextEditingController();
     super.onInit();
