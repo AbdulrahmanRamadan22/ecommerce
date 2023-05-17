@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:store_app_advanced/view/screen/category.dart';
 import 'package:store_app_advanced/view/screen/favorite.dart';
@@ -12,6 +13,7 @@ abstract class LayoutScreenController extends GetxController {
 
 class LayoutScreenControllerImplement extends LayoutScreenController {
   int currentScreen = 0;
+
 
   List<Widget> listScreen = [
     const HomeScreen(),

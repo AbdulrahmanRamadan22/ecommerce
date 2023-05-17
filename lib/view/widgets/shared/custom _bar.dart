@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../controller/layout_controller.dart';
 import '../../../shared/styles/colors.dart';
 
 Row customBar({
@@ -14,25 +16,29 @@ Row customBar({
   return Row(
     children: [
       Expanded(
-        child: TextFormField(
-          onChanged: onChanged,
+        child: GetBuilder<LayoutScreenControllerImplement>(
+          builder: (controller) {
+            return TextFormField(
+              onChanged: onChanged,
 
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(10),
-            prefixIcon:  IconButton(
-              icon: Icon(Icons.search,size:MediaQuery.of(context).size.width * 0.06, ),
-              onPressed: onIconSearch,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.all(10),
+                prefixIcon:  IconButton(
+                  icon: Icon(Icons.search,size:MediaQuery.of(context).size.width * 0.06, ),
+                  onPressed: onIconSearch,
 
-            ),
-            hintText: hintText,
-            hintStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            filled: true,
-            fillColor: AppColor.gray2,
-          ),
+                ),
+                hintText: hintText,
+                hintStyle: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                filled: true,
+                fillColor: AppColor.gray2,
+              ),
+            );
+          }
         ),
       ),
       const SizedBox(width: 10),

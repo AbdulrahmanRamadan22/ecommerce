@@ -12,6 +12,8 @@ class LayoutScreen extends StatelessWidget {
         init: LayoutScreenControllerImplement(),
         builder: (controller) {
           return Scaffold(
+            resizeToAvoidBottomInset: false,
+
             appBar: AppBar(
               toolbarHeight: 0,
             ),
@@ -20,6 +22,7 @@ class LayoutScreen extends StatelessWidget {
                 child: const Icon(Icons.shopping_cart_sharp)),
             floatingActionButtonLocation:
             FloatingActionButtonLocation.centerDocked,
+
             body: controller.listScreen[controller.currentScreen],
             bottomNavigationBar: const CustomBottomAppBarLayout(),
           );

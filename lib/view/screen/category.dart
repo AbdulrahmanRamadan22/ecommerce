@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:store_app_advanced/view/widgets/shared/handling_dataview.dart';
 
 import '../../controller/category_controller.dart';
@@ -15,7 +14,8 @@ class CategoryScreen extends StatelessWidget {
     Get.put(CategoryControllerImplement());
 
     return GetBuilder<CategoryControllerImplement>(
-      builder: (controller) {
+
+        builder: (controller) {
         return HandlingDataView(
           statusRequest: controller.statusRequest,
           widget:

@@ -16,8 +16,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
      Get.put(HomeControllerImplement());
 
-    return Scaffold(
-      body: GetBuilder<HomeControllerImplement>(
+    return
+       GetBuilder<HomeControllerImplement>(
         builder: (controller) {
           return HandlingDataView(
             statusRequest: controller.statusRequest,
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-      ),
-    );
+      );
+
   }
 }

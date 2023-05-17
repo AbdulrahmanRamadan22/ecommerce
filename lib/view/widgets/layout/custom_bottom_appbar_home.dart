@@ -14,9 +14,12 @@ class CustomBottomAppBarLayout extends StatelessWidget {
 
     return GetBuilder<LayoutScreenControllerImplement>(
         builder: (controller) => BottomAppBar(
+
           shape: const CircularNotchedRectangle(),
           notchMargin: 10,
+
           child: Row(
+
             children: [
               ...List.generate(controller.listScreen.length + 1,
                   ((index) {
@@ -24,6 +27,7 @@ class CustomBottomAppBarLayout extends StatelessWidget {
                     return index == 2
                         ? const Spacer()
                         : CustomButtonAppBar(
+
                       textButton: controller.titleBottomAppbar[i],
                       iconData: controller.iconBottom[i],
                       onPressed: () {
