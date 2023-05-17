@@ -3,6 +3,7 @@ import 'package:store_app_advanced/shared/constants/routes.dart';
 
 import '../data/helper/status_request.dart';
 import '../data/remote/home.dart';
+import '../models/product_model.dart';
 import '../shared/function/handing_datacontroller.dart';
 import '../shared/services/services.dart';
 
@@ -11,6 +12,7 @@ abstract class HomeController extends GetxController {
   Future<void> getData();
   goToItems(List categories, int selectedCat, String categoryid);
 
+  goToPageProductDetails(DataModel productModel);
 }
 
 class HomeControllerImplement extends HomeController {
@@ -38,6 +40,7 @@ class HomeControllerImplement extends HomeController {
 
   @override
   Future<void> initialData() async {
+
     token = myServices.sharedPreferences.getString("token") ?? "";
     name = myServices.sharedPreferences.getString("name");
     email = myServices.sharedPreferences.getString("email");
@@ -66,6 +69,7 @@ class HomeControllerImplement extends HomeController {
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == true) {
+
         categories.addAll(response["data"]['categories']);
         products.addAll(response["data"]['products']);
       } else {
@@ -83,4 +87,13 @@ class HomeControllerImplement extends HomeController {
       "catid": categoryid
     });
   }
+
+  @override
+  goToPageProductDetails(DataModel productModel) {
+    Get.toNamed("productDetails", arguments: {
+      "productModel": productModel});
+
+  }
+
+
 }

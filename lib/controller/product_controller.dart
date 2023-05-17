@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:store_app_advanced/shared/constants/routes.dart';
 
 import '../data/helper/status_request.dart';
 import '../data/remote/product.dart';
+import '../models/product_model.dart';
 import '../shared/function/handing_datacontroller.dart';
 import '../shared/services/services.dart';
 
@@ -9,6 +11,8 @@ abstract class ProductController extends GetxController {
   intialData();
   changeCat(int val, String catval);
   getItems(String categoryid);
+  goToPageProductDetails(DataModel productModel);
+
 }
 
 class ProductControllerImplement extends ProductController {
@@ -66,5 +70,12 @@ class ProductControllerImplement extends ProductController {
       }
     }
     update();
+  }
+
+  @override
+  goToPageProductDetails(DataModel productModel) {
+    Get.toNamed("productDetails", arguments: {
+      "productModel": productModel});
+
   }
 }

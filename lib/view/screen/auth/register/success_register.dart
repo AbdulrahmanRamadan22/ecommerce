@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../widgets/sucsses_register_or_forgetpassword.dart';
+import '../../../widgets/sucsses_register_or_forgetpassword/sucsses_register_or_forgetpassword.dart';
 
 
 class SuccessRegisterScreen extends StatelessWidget {

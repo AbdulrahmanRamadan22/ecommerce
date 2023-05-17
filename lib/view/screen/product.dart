@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:store_app_advanced/view/widgets/shared/handling_dataview.dart';
 import '../../controller/product_controller.dart';
 import '../../models/product_model.dart';
-import '../widgets/home/prodect_home.dart';
 import '../widgets/product/list_category_item.dart';
 import '../widgets/product/list_product_item.dart';
 import '../widgets/shared/custom _bar.dart';
@@ -16,6 +15,7 @@ class ProductScreen extends StatelessWidget {
     Get.put(ProductControllerImplement());
 
     return Scaffold(
+      appBar: AppBar(toolbarHeight: 0),
       body: Container(
         padding: const EdgeInsets.all(16),
         child: GetBuilder<ProductControllerImplement>(
@@ -54,7 +54,8 @@ class ProductScreen extends StatelessWidget {
                       itemCount: controller.data.length, // Replace with the actual number of items
                       itemBuilder: (BuildContext context, int index) {
                         return  ListProductItem(
-                          product: DataModel.fromJson(controller.data[index]),
+                          product: DataModel.fromJson(controller.data[index],
+                          ), active: true,
                         );
                       },
                     );

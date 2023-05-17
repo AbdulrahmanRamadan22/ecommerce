@@ -6,6 +6,7 @@ import 'package:store_app_advanced/view/screen/favorite.dart';
 
 import '../view/screen/home.dart';
 import '../view/screen/profile.dart';
+import '../view/screen/settings.dart';
 
 abstract class LayoutScreenController extends GetxController {
   changeScreen(int index);
@@ -19,23 +20,33 @@ class LayoutScreenControllerImplement extends LayoutScreenController {
     const HomeScreen(),
     const CategoryScreen(),
     const FavoriteScreen(),
-    const ProfileScreen(),
+    const SettingsScreen(),
     // const CartScreen(),
   ];
 
-  List titleBottomAppbar = [
-    "Home",
-    "Category",
-    "Favorite",
-    "Profile",
+
+
+  List bottomAppBar = [
+    {"title": "Home", "icon": Icons.home},
+    {"title": "Category", "icon": Icons.apps,},
+    {"title": "Favorite", "icon":  Icons.favorite,},
+    {"title": "settings", "icon": Icons.settings}
   ];
 
-  List<IconData> iconBottom = [
-    Icons.home,
-    Icons.apps,
-    Icons.favorite,
-    Icons.account_circle,
-  ];
+
+  // List titleBottomAppbar = [
+  //   "Home",
+  //   "Category",
+  //   "Favorite",
+  //   "Settings",
+  // ];
+  //
+  // List<IconData> iconBottom = [
+  //   Icons.home,
+  //   Icons.apps,
+  //   Icons.favorite,
+  //   Icons.settings,
+  // ];
 
   @override
   // ignore: avoid_renaming_method_parameters

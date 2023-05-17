@@ -32,7 +32,7 @@ class CustomButtonAppBar extends StatelessWidget {
             color: active == true ? AppColor.defaultColor : AppColor.gray1,
           ),
           SizedBox(
-            height: textSize * 1.2,
+            height: textSize * 1.5,
             child: Text(
               textButton,
               style: TextStyle(

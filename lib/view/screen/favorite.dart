@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../shared/styles/colors.dart';
-import '../widgets/build_list_product_favorite.dart';
-import '../widgets/my_divider.dart';
+import '../widgets/favorite/build_list_product_favorite.dart';
+import '../widgets/shared/my_divider.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);

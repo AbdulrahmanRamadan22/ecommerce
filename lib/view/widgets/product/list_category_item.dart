@@ -12,14 +12,18 @@ class ListCategoryItems extends GetView<ProductControllerImplement> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 20,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => CategoryItem(
-          i: index,
-          categoriesModel: Categories.fromJson(controller.categories[index]),
-        ),
-        separatorBuilder: (context, index) => const SizedBox(width: 10),
-        itemCount: controller.categories.length,
+      child: GetBuilder<ProductControllerImplement>(
+        builder: (controller) {
+          return ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => CategoryItem(
+              i: index,
+              categoriesModel: Categories.fromJson(controller.categories[index]),
+            ),
+            separatorBuilder: (context, index) => const SizedBox(width: 10),
+            itemCount: controller.categories.length,
+          );
+        }
       ),
     );
   }

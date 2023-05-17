@@ -14,7 +14,8 @@ import 'package:store_app_advanced/view/screen/favorite.dart';
 import 'package:store_app_advanced/view/screen/home.dart';
 import 'package:store_app_advanced/view/screen/on_boarding.dart';
 import 'package:store_app_advanced/view/screen/product.dart';
-import 'package:store_app_advanced/view/screen/profile.dart';
+import 'package:store_app_advanced/view/screen/product_details.dart';
+import 'package:store_app_advanced/view/screen/settings.dart';
 
 import 'layout/layout.dart';
 import 'view/screen/auth/forgetpassword/success_reset_password.dart';
@@ -26,24 +27,33 @@ List<GetPage<dynamic>>? routes = [
     MyMiddleWare()
   ]),
 
+
+  //==================================Auth============================
+
   GetPage(name: AppRoute.login, page: () =>  const LoginScreen()),
   GetPage(name: AppRoute.register, page: () =>  const RegisterScreen()),
+  GetPage(name: AppRoute.verificationCodeRegister, page: () => const VerificationCodeRegisterScreen()),
+  GetPage(name: AppRoute.successRegister, page: () => const SuccessRegisterScreen()),
+//===forget=========
   GetPage(name: AppRoute.forgerPassword, page: () => const ForgetPasswordScreen()),
   GetPage(name: AppRoute.verificationCode, page: () => const VerificationCodeScreen()),
   GetPage(name: AppRoute.resetPassword, page: () =>  const ResetPasswordScreen()),
   GetPage(name: AppRoute.successResetPassword, page: () => const SuccessResetPasswordScreen()),
-  GetPage(name: AppRoute.successRegister, page: () => const SuccessRegisterScreen()),
-  GetPage(name: AppRoute.onBoarding, page: () =>  const OnBoardingScreen()),
-  GetPage(name: AppRoute.verificationCodeRegister, page: () => const VerificationCodeRegisterScreen()),
+
+
+  //===================================HomeLayout==================
   GetPage(name: AppRoute.layout, page: () =>  const LayoutScreen()),
   GetPage(name: AppRoute.home, page: () =>  const HomeScreen()),
-  GetPage(name: AppRoute.favorite, page: () =>  const FavoriteScreen()),
-  GetPage(name: AppRoute.cart, page: () =>  const CartScreen()),
   GetPage(name: AppRoute.category, page: () =>  const CategoryScreen()),
+  GetPage(name: AppRoute.cart, page: () =>  const CartScreen()),
+  GetPage(name: AppRoute.favorite, page: () =>  const FavoriteScreen()),
+  GetPage(name: AppRoute.settings, page: () =>  const SettingsScreen()),
+  GetPage(name: AppRoute.onBoarding, page: () =>  const OnBoardingScreen()),
 
-  GetPage(name: AppRoute.profile, page: () =>  const ProfileScreen()),
-
+  // GetPage(name: AppRoute.profile, page: () =>  const ProfileScreen()),
+  //=========================product========================
   GetPage(name: AppRoute.product, page: () =>  const ProductScreen()),
+  GetPage(name: AppRoute.productDetails, page: () =>  const ProductDetailsScreen()),
 
 
 ];

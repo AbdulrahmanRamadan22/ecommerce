@@ -9,6 +9,7 @@ import '../shared/services/services.dart';
 abstract class CategoryController extends GetxController {
   Future<void> initialData();
   Future<void> getData();
+
 }
 
 class CategoryControllerImplement extends CategoryController {
@@ -54,4 +55,6 @@ class CategoryControllerImplement extends CategoryController {
     }
     update();
   }
+
+
 }

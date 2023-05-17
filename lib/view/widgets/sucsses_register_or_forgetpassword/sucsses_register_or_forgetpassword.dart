@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/constants/routes.dart';
 
-import '../../shared/styles/colors.dart';
-import 'shared/default_button.dart';
+import '../../../shared/styles/colors.dart';
+import '../shared/default_button.dart';
 
 Widget success({
   required String text,

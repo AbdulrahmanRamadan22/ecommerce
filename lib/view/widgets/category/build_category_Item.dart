@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/view/widgets/shared/responsive.dart';
 
-import '../../controller/category_controller.dart';
-import '../../models/categories_model.dart';
-import '../../shared/styles/colors.dart';
-import 'my_divider.dart';
+import '../../../controller/category_controller.dart';
+import '../../../models/categories_model.dart';
+import '../../../shared/styles/colors.dart';
+import '../shared/my_divider.dart';
 
 class ListCategoryItem extends GetView<CategoryControllerImplement> {
   const ListCategoryItem({Key? key}) : super(key: key);

@@ -28,8 +28,8 @@ class CustomBottomAppBarLayout extends StatelessWidget {
                         ? const Spacer()
                         : CustomButtonAppBar(
 
-                      textButton: controller.titleBottomAppbar[i],
-                      iconData: controller.iconBottom[i],
+                      textButton: controller.bottomAppBar[i]['title'],
+                      iconData: controller.bottomAppBar[i]['icon'],
                       onPressed: () {
                         controller.changeScreen(i);
                       },

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/styles/colors.dart';
 
 import '../../../controller/home_controller.dart';
-import '../../../models/home_model.dart';
+import '../../../models/product_model.dart';
 
 
 class ListsProductItem extends GetView<HomeControllerImplement> {
@@ -31,7 +31,7 @@ class ListsProductItem extends GetView<HomeControllerImplement> {
           itemCount: controller.products.length, // Replace with the actual number of items
           itemBuilder: (BuildContext context, int index) {
             return  ProductItem(
-                productsModel: Products.fromJson(controller.products[index]),
+                productsModel: DataModel.fromJson(controller.products[index]), active: true,
             );
           },
         );
@@ -49,106 +49,120 @@ class ListsProductItem extends GetView<HomeControllerImplement> {
 
 
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({Key? key, required this.productsModel}) : super(key: key);
-  final Products productsModel;
+class ProductItem extends GetView<HomeControllerImplement>{
+  const ProductItem( {Key? key, required this.productsModel,required this.active,}) : super(key: key);
+  final DataModel productsModel;
+  final bool active;
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
 
-    return Card(
-      elevation: 5,
-      color: AppColor.gray3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-        side: const BorderSide(
-          color: AppColor.gray1,
-          width: 1.25,
+    return InkWell(
+      onTap: () {
+        controller.goToPageProductDetails(productsModel);
+      },
+      child: Card(
+        elevation: 5,
+        color: AppColor.gray3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: const BorderSide(
+            color: AppColor.gray1,
+            width: 1.25,
+          ),
         ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: screenSize.width * 0.02,
-          vertical: screenSize.height * 0.02,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Stack(
-                alignment: AlignmentDirectional.bottomStart,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: screenSize.width * 0.02,
+            vertical: screenSize.height * 0.02,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomStart,
+                  children: [
+                    CachedNetworkImage(
+
+                       imageUrl: ("${productsModel.image}"),
+                      width: double.infinity,
+                      height: 130,
+
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: screenSize.width * 0.01),
+                      color: Colors.red,
+                      child: const Text(
+                        "DISCOUNT",
+                        style: TextStyle(fontSize: 10, color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                "${productsModel.name}",
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(
+                  color: Colors.black,
+                  height: 1.3,
+                  fontSize: screenSize.width * 0.044,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
                 children: [
-                  CachedNetworkImage(
-
-                     imageUrl: ("${productsModel.image}"),
-                    width: double.infinity,
-                    height: 130,
-
+                  Text(
+                    "${productsModel.price}",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: screenSize.width * 0.04,
+                    ),
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: screenSize.width * 0.01),
-                    color: Colors.red,
-                    child: const Text(
-                      "DISCOUNT",
-                      style: TextStyle(fontSize: 10, color: Colors.white),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    "${productsModel.oldPrice}",
+                    style: TextStyle(
+                      fontSize: screenSize.width * 0.038,
+                      decoration: TextDecoration.lineThrough,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+
+                    padding: EdgeInsets.zero,
+                    onPressed: () {},
+                    icon: active ?CircleAvatar(
+                      radius: screenSize.width * 0.04,
+                      backgroundColor: AppColor.defaultColor,
+                      child: Icon(
+                        Icons.favorite_border,
+                        size: screenSize.width * 0.05,
+                        color: Colors.white,
+                      ),
+                    ):CircleAvatar(
+                      radius: screenSize.width * 0.04,
+                      backgroundColor: AppColor.gray,
+                      child: Icon(
+                        Icons.favorite_border,
+                        size: screenSize.width * 0.05,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              "${productsModel.name}",
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              style: TextStyle(
-                color: Colors.black,
-                height: 1.3,
-                fontSize: screenSize.width * 0.044,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Text(
-                  "${productsModel.price}",
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: screenSize.width * 0.04,
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  "${productsModel.oldPrice}",
-                  style: TextStyle(
-                    fontSize: screenSize.width * 0.038,
-                    decoration: TextDecoration.lineThrough,
-                  ),
-                ),
-                const Spacer(),
-                IconButton(
-
-                  padding: EdgeInsets.zero,
-                  onPressed: () {},
-                  icon: CircleAvatar(
-                    radius: screenSize.width * 0.04,
-                    backgroundColor: AppColor.gray,
-                    child: Icon(
-                      Icons.favorite_border,
-                      size: screenSize.width * 0.05,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -38,8 +38,8 @@ class HomeScreen extends StatelessWidget {
                     const CategoryItem(),
 
                     titleHome("Products", context),
-
                     const ListsProductItem(),
+
                   ],
                 ),
               ),
