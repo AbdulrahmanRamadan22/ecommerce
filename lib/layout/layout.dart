@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store_app_advanced/shared/constants/routes.dart';
+import '../controller/cart_controller.dart';
 import '../controller/layout_controller.dart';
 import '../view/widgets/layout/custom_bottom_appbar_home.dart';
 
@@ -8,8 +10,11 @@ class LayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-        init: LayoutScreenControllerImplement(),
+    Get.put(LayoutScreenControllerImplement());
+
+    CartController cartController= Get.put(CartController());
+
+    return GetBuilder<LayoutScreenControllerImplement>(
         builder: (controller) {
           return Scaffold(
             resizeToAvoidBottomInset: false,
@@ -18,12 +23,19 @@ class LayoutScreen extends StatelessWidget {
               toolbarHeight: 0,
             ),
             floatingActionButton: FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {
+
+                  Get.toNamed(AppRoute.cart);
+
+                  cartController.refreshPage();
+
+                },
                 child: const Icon(Icons.shopping_cart_sharp)),
             floatingActionButtonLocation:
             FloatingActionButtonLocation.centerDocked,
 
-            body: controller.listScreen[controller.currentScreen],
+              body: controller.listScreen.elementAt(controller.currentScreen),
+
             bottomNavigationBar: const CustomBottomAppBarLayout(),
           );
         });

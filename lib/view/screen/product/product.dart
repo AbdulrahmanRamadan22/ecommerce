@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/view/widgets/shared/handling_dataview.dart';
-import '../../controller/product_controller.dart';
-import '../../models/product_model.dart';
-import '../widgets/product/list_category_item.dart';
-import '../widgets/product/list_product_item.dart';
-import '../widgets/shared/custom _bar.dart';
+import '../../../controller/favorite_controller.dart';
+import '../../../controller/product_controller.dart';
+import '../../../models/product_model.dart';
+import '../../widgets/product/list_category_item.dart';
+import '../../widgets/product/list_product_item.dart';
+import '../../widgets/shared/custom _bar.dart';
+import '../home.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ProductControllerImplement());
-
+    FavoriteController controllerFav= Get.put(FavoriteController());
     return Scaffold(
       appBar: AppBar(toolbarHeight: 0),
       body: Container(
@@ -25,9 +27,29 @@ class ProductScreen extends StatelessWidget {
                 children: [
                   customBar
                     (context: context,
-                      hintText:"Find Product" ,
-                      onChanged: (String value) {  },
-                      onIconSearch: () {  }),
+                    hintText:"Find Product" ,
+                    onChanged: (String value) {
+                      // controller.onSearchProduct();
+                      controller.checkSearch(value);
+                    },
+                    onIconSearch: () {
+                      controller.onSearchProduct();
+                    },
+
+
+                    myController:controller.search!,
+                    onTap: () {
+                      // controller.onSearchProduct();
+
+                    }, onSubmitted: (String value) {
+                      controller.onSearchProduct();
+                    },
+                    // onIconFavorite: () {
+                    //
+                    //
+                    // }
+                  ),
+
                   const SizedBox(height: 15,),
 
                   const ListCategoryItems(),
@@ -35,7 +57,7 @@ class ProductScreen extends StatelessWidget {
               HandlingDataView(
                 statusRequest: controller.statusRequest,
                 widget:
-                 LayoutBuilder(
+                !controller.isSearch? LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
                     const crossAxisCount = 2;
                     final childAspectRatio =
@@ -53,13 +75,18 @@ class ProductScreen extends StatelessWidget {
                       ),
                       itemCount: controller.data.length, // Replace with the actual number of items
                       itemBuilder: (BuildContext context, int index) {
+                        controllerFav.isFavorite[controller.data[index]['id']]=controller.data[index]["in_favorites"];
+
                         return  ListProductItem(
-                          product: DataModel.fromJson(controller.data[index],
-                          ), active: true,
+                          productsModel: Products.fromJson(controller.data[index],
+                          ),
                         );
                       },
                     );
                   },
+                ):Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: ListsSearchProduct(searchModel: controller.Listdata,),
                 ),
               ),
                 ],

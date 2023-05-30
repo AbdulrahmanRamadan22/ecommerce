@@ -22,11 +22,19 @@ class AppRoute {
   static const String profile= "/profile" ;
   static const String product= "/product" ;
   static const String productDetails= "/productDetails" ;
+  static const String productDetailsSearch= "/productDetailsSearch" ;
+
+
   static const String settings= "/settings" ;
+  static const String productCategory= "/productCategory" ;
 
 
 
+  static const String addressView= "/addressView" ;
+  static const String addressAdd= "/addressAdd" ;
 
+
+  static const String map= "/map" ;
 
 
 

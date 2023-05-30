@@ -51,7 +51,7 @@ class Api {
 
     if (token != null) {
       headers.addAll({
-        'Authorization': 'Bearer$token',
+        'Authorization': 'Bearer $token',
       });
     }
 
@@ -80,7 +80,6 @@ class Api {
     required String url,
     required dynamic body,
     String? token,
-    String lang = 'en',
   }) async {
     Map<String, String> headers = {};
     headers.addAll({
@@ -89,7 +88,7 @@ class Api {
     });
     if (token != null) {
       headers.addAll({
-        'Authorization': 'Bearer$token',
+        'Authorization': 'Bearer $token',
       });
     }
 

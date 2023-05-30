@@ -1,7 +1,9 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:store_app_advanced/shared/constants/routes.dart';
 import 'package:store_app_advanced/shared/middleware/my_middleware.dart';
-import 'package:store_app_advanced/view/screen/auth/cart.dart';
+import 'package:store_app_advanced/view/screen/address/add_address.dart';
+import 'package:store_app_advanced/view/screen/address/map.dart';
+import 'package:store_app_advanced/view/screen/address/address_view.dart';
 import 'package:store_app_advanced/view/screen/auth/forgetpassword/forget_password_screen.dart';
 import 'package:store_app_advanced/view/screen/auth/forgetpassword/reset_password_screen.dart';
 import 'package:store_app_advanced/view/screen/auth/forgetpassword/verification_code_screen.dart';
@@ -9,13 +11,17 @@ import 'package:store_app_advanced/view/screen/auth/login.dart';
 import 'package:store_app_advanced/view/screen/auth/register/register.dart';
 import 'package:store_app_advanced/view/screen/auth/register/success_register.dart';
 import 'package:store_app_advanced/view/screen/auth/register/verification_code_register_screen.dart';
+import 'package:store_app_advanced/view/screen/cart/cart.dart';
 import 'package:store_app_advanced/view/screen/category.dart';
 import 'package:store_app_advanced/view/screen/favorite.dart';
 import 'package:store_app_advanced/view/screen/home.dart';
 import 'package:store_app_advanced/view/screen/on_boarding.dart';
-import 'package:store_app_advanced/view/screen/product.dart';
-import 'package:store_app_advanced/view/screen/product_details.dart';
+import 'package:store_app_advanced/view/screen/product/product.dart';
+import 'package:store_app_advanced/view/screen/product/product_details.dart';
+import 'package:store_app_advanced/view/screen/product/product_detalis_search.dart';
+import 'package:store_app_advanced/view/screen/profile.dart';
 import 'package:store_app_advanced/view/screen/settings.dart';
+import 'package:store_app_advanced/view/widgets/category/product_category.dart';
 
 import 'layout/layout.dart';
 import 'view/screen/auth/forgetpassword/success_reset_password.dart';
@@ -53,7 +59,21 @@ List<GetPage<dynamic>>? routes = [
   // GetPage(name: AppRoute.profile, page: () =>  const ProfileScreen()),
   //=========================product========================
   GetPage(name: AppRoute.product, page: () =>  const ProductScreen()),
-  GetPage(name: AppRoute.productDetails, page: () =>  const ProductDetailsScreen()),
+  GetPage(name: AppRoute.productDetails, page: () =>   ProductDetailsScreen()),
+  GetPage(name: AppRoute.productCategory, page: () =>  const ProductCategoryScreen()),
+
+
+  GetPage(name: AppRoute.profile, page: () =>   const ProfileScreen()),
+
+
+
+  // GetPage(name: AppRoute.productDetailsSearch, page: () =>   const ProductDetailsSearch()),
+
+  GetPage(name: AppRoute.addressView, page: () =>   const AddressScreen()),
+
+  GetPage(name: AppRoute.addressAdd, page: () =>   const AddressAdd()),
+
+  GetPage(name: AppRoute.map, page: () =>   const MapScreen()),
 
 
 ];

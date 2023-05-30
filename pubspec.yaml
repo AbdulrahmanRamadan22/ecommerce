@@ -66,10 +66,10 @@ dependencies:
 #  auto_animated: ^3.0.1
 
   # Google Map
-#  flutter_polyline_points: ^1.0.0
-#  google_maps_flutter: ^2.1.5
-#  geolocator: ^8.0.5
-#  geocoding: ^2.0.4
+  flutter_polyline_points: ^1.0.0
+  google_maps_flutter: ^2.2.8
+  geolocator: ^9.0.2
+  geocoding: ^2.1.0
 
   # Firebase And Notification
   firebase_messaging: ^14.5.0

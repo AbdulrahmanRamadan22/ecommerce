@@ -50,7 +50,8 @@ class RegisterScreen extends StatelessWidget {
                         type: TextInputType.name,
                         validate: (value) {
                           return validInput(value!, 3, 100, "name");
-                        }, hint: 'Enter Name',
+                        },
+                        hint: 'Enter Name',
                       ),
                       SizedBox(height: screenHeight * 0.03),
                       defaultFormField(

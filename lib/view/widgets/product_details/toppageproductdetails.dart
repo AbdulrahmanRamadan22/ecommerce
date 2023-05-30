@@ -15,9 +15,9 @@ class TopProductPageDetails extends GetView<ProductDetailsControllerImplement> {
       children: [
         Container(
           height: 160,
-          decoration:  const BoxDecoration(
-              color: AppColor.defaultColor,
-            borderRadius: BorderRadius.only(bottomLeft:Radius.circular(20),bottomRight: Radius.circular(20)),
+          decoration:   BoxDecoration(
+              color: AppColor.gray3,
+            borderRadius: const BorderRadius.only(bottomLeft:Radius.circular(30),bottomRight: Radius.circular(30)),
 
           ),
         ),

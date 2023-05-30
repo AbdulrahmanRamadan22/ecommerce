@@ -52,7 +52,7 @@ ThemeData lightTheme = ThemeData(
   primarySwatch:mycolor,
 
   scaffoldBackgroundColor:AppColor.white,
-  primaryColor: AppColor.defaultColor,
+  // primaryColor: AppColor.black,
 
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
@@ -60,7 +60,8 @@ ThemeData lightTheme = ThemeData(
 
     systemOverlayStyle: SystemUiOverlayStyle(
       // statusBarBrightness: Brightness.light,
-      // statusBarColor: AppColor.white,
+
+      statusBarColor: AppColor.white,
       statusBarIconBrightness: Brightness.dark,
     ),
     backgroundColor: Colors.white,
@@ -71,7 +72,7 @@ ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.w900,
     ),
     iconTheme: IconThemeData(
-      color: AppColor.black,
+      color: AppColor.gray,
     ),
   ),
   // ignore: prefer_const_constructors

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:store_app_advanced/shared/constants/routes.dart';
-
+import 'package:store_app_advanced/controller/search_product.dart';
 import '../data/helper/status_request.dart';
 import '../data/remote/product.dart';
 import '../models/product_model.dart';
@@ -11,23 +10,31 @@ abstract class ProductController extends GetxController {
   intialData();
   changeCat(int val, String catval);
   getItems(String categoryid);
-  goToPageProductDetails(DataModel productModel);
+  goToPageProductDetails(Products productModel);
 
 }
 
-class ProductControllerImplement extends ProductController {
+class ProductControllerImplement extends SearchControllerImplement {
   List categories = [];
   String? catid;
   int? selectedCat;
   Product product = Product(Get.find());
 
 
+  // ignore: overridden_fields
+  @override
+  // ignore: overridden_fields
   MyServices myServices = Get.find();
 
 
 
   List data = [];
+  @override
+  // ignore: overridden_fields
+  late String token;
 
+  @override
+  // ignore: overridden_fields
   StatusRequest statusRequest = StatusRequest.none;
 
 
@@ -36,17 +43,17 @@ class ProductControllerImplement extends ProductController {
   void onInit() {
     intialData();
     super.onInit();
+
   }
 
-  @override
   intialData() {
+
     categories = Get.arguments['categories'];
     selectedCat = Get.arguments['selectedcat'];
     catid = Get.arguments['catid'];
     getItems(catid!);
   }
 
-  @override
   changeCat(val, catval) {
     selectedCat = val;
     catid = catval;
@@ -54,17 +61,16 @@ class ProductControllerImplement extends ProductController {
     update();
   }
 
-  @override
   getItems(categoryId) async {
     data.clear();
     statusRequest = StatusRequest.loading;
-    var response = await product.getProduct(categoryId);
+    var response = await product.getProduct(categoryId,token:myServices.sharedPreferences.getString("token")! );
 
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == true) {
-        data.addAll(response["data"]['data']);
+        data.addAll(response["data"]['products']);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -72,10 +78,12 @@ class ProductControllerImplement extends ProductController {
     update();
   }
 
-  @override
-  goToPageProductDetails(DataModel productModel) {
+  goToPageProductDetails(Products productModel) {
     Get.toNamed("productDetails", arguments: {
-      "productModel": productModel});
+      "productModel": productModel
+
+      }
+    );
 
   }
 }

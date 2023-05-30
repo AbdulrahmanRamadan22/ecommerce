@@ -1,4 +1,3 @@
-import '../../../models/login_model.dart';
 import '../../helper/http_helper.dart';
 import '../../helper/link_api.dart';
 
@@ -13,8 +12,7 @@ class LoginData {
         url: ApiLink.login,
         body: {
           "email" : email ,
-          "password" : password  ,
-
+          "password" : password ,
         }
     );
     // ignore: non_constant_identifier_names

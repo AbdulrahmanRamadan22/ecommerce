@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/styles/colors.dart';
 
+import '../../../controller/favorite_controller.dart';
 import '../../../controller/home_controller.dart';
 import '../../../models/product_model.dart';
 
@@ -12,6 +13,8 @@ class ListsProductItem extends GetView<HomeControllerImplement> {
 
   @override
   Widget build(BuildContext context) {
+    FavoriteController controllerFav= Get.put(FavoriteController());
+
     return  LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         const crossAxisCount = 2;
@@ -30,8 +33,10 @@ class ListsProductItem extends GetView<HomeControllerImplement> {
           ),
           itemCount: controller.products.length, // Replace with the actual number of items
           itemBuilder: (BuildContext context, int index) {
+            controllerFav.isFavorite[controller.products[index]['id']]=controller.products[index]["in_favorites"];
+
             return  ProductItem(
-                productsModel: DataModel.fromJson(controller.products[index]), active: true,
+                productsModel: Products.fromJson(controller.products[index]),
             );
           },
         );
@@ -44,15 +49,10 @@ class ListsProductItem extends GetView<HomeControllerImplement> {
 
 
 
-
-
-
-
-
 class ProductItem extends GetView<HomeControllerImplement>{
-  const ProductItem( {Key? key, required this.productsModel,required this.active,}) : super(key: key);
-  final DataModel productsModel;
-  final bool active;
+  const ProductItem( {Key? key, required this.productsModel,}) : super(key: key);
+  final Products productsModel;
+
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -91,6 +91,7 @@ class ProductItem extends GetView<HomeControllerImplement>{
                       height: 130,
 
                     ),
+                    if(productsModel.discount !=null)
                     Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: screenSize.width * 0.01),
@@ -118,49 +119,72 @@ class ProductItem extends GetView<HomeControllerImplement>{
               ),
               const SizedBox(height: 8),
               Row(
+                // mainAxisSize:MainAxisSize.min,
+                textBaseline:TextBaseline.alphabetic ,
                 children: [
-                  Text(
-                    "${productsModel.price}",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: screenSize.width * 0.04,
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${productsModel.price} EGP",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: screenSize.width * 0.038,
+                        ),
+                      ),
+                      if(productsModel.discount !=null)
+                      Text(
+                        "${productsModel.oldPrice}",
+                        style: TextStyle(
+                          fontSize: screenSize.width * 0.035,
+                          decoration: TextDecoration.lineThrough,
+                          height: 1.1
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    "${productsModel.oldPrice}",
-                    style: TextStyle(
-                      fontSize: screenSize.width * 0.038,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                  ),
-                  const Spacer(),
-                  IconButton(
 
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: active ?CircleAvatar(
-                      radius: screenSize.width * 0.04,
-                      backgroundColor: AppColor.defaultColor,
-                      child: Icon(
-                        Icons.favorite_border,
-                        size: screenSize.width * 0.05,
-                        color: Colors.white,
-                      ),
-                    ):CircleAvatar(
-                      radius: screenSize.width * 0.04,
-                      backgroundColor: AppColor.gray,
-                      child: Icon(
-                        Icons.favorite_border,
-                        size: screenSize.width * 0.05,
-                        color: Colors.white,
-                      ),
-                    ),
+                  const Spacer(),
+                  GetBuilder<FavoriteController>(
+                    builder: (controller) {
+                      return IconButton(
+
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          if(controller.isFavorite[productsModel.id]==true){
+                            controller.setFavorite(productsModel.id, false);
+                            controller.removeFavorite(productsModel.id.toString());
+                          }
+                          else{
+                            controller.setFavorite(productsModel.id, true);
+                            controller.addFavorite(productsModel.id.toString());
+
+                          }
+                        },
+                        icon: controller.isFavorite[productsModel.id]==true?CircleAvatar(
+                          radius: screenSize.width * 0.035,
+                          backgroundColor: AppColor.defaultColor,
+                          child: Icon(
+                            Icons.favorite_border,
+                            size: screenSize.width * 0.045,
+                            color: Colors.white,
+                          ),
+                        ):CircleAvatar(
+                          radius: screenSize.width * 0.035,
+                          backgroundColor: AppColor.gray,
+                          child: Icon(
+                            Icons.favorite_border,
+                            size: screenSize.width *  0.045,
+                            color: Colors.white,
+                          ),
+                        ),
+                      );
+                    }
                   ),
+
                 ],
               ),
+
             ],
           ),
         ),

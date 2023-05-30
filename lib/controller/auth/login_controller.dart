@@ -66,6 +66,11 @@ class LoginControllerImplement extends LoginController{
             myServices.sharedPreferences.setString("token", response['data']['token']) ;
             myServices.sharedPreferences.setInt("points", response['data']['points']);
             myServices.sharedPreferences.setInt("credit", response['data']['credit']);
+
+
+            myServices.sharedPreferences.setBool("address", response['data']['address']);
+
+
             myServices.sharedPreferences.setString("step","2") ;
             Get.offNamed(AppRoute.layout, arguments: {
               "token":myServices.sharedPreferences.getString("token"),

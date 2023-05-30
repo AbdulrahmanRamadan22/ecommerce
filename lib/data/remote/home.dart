@@ -9,4 +9,5 @@ class HomeData {
     var response = await api.getData(url: ApiLink.home, token: token);
     return response.fold((l) => l, (r) => r);
   }
+
 }

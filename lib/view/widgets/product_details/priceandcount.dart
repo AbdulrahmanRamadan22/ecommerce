@@ -20,13 +20,13 @@ class PriceAndCountItems extends StatelessWidget {
     return Row(
       children: [
         FloatingActionButton(
-heroTag: "add",
+heroTag: "remove",
           mini: true,
           elevation: 0,
           backgroundColor: AppColor.gray2,
-          onPressed:onAdd,
+          onPressed:onRemove,
           child: const Icon(
-            Icons.add,
+            Icons.remove,
             // size: 35,
             color: AppColor.gray,
           ),
@@ -39,13 +39,13 @@ heroTag: "add",
           ),
         ),
         FloatingActionButton(
-          heroTag: "remove",
+          heroTag: "add",
           mini: true,
           elevation: 0,
           backgroundColor: AppColor.gray2,
-          onPressed:onRemove,
+          onPressed:onAdd,
           child: const Icon(
-            Icons.remove,
+            Icons.add,
             // size: 35,
             color: AppColor.gray,
           ),

@@ -15,11 +15,11 @@ abstract class LayoutScreenController extends GetxController {
 class LayoutScreenControllerImplement extends LayoutScreenController {
   int currentScreen = 0;
 
-
+  //
   List<Widget> listScreen = [
     const HomeScreen(),
     const CategoryScreen(),
-    const FavoriteScreen(),
+     const ProfileScreen(),
     const SettingsScreen(),
     // const CartScreen(),
   ];
@@ -29,7 +29,7 @@ class LayoutScreenControllerImplement extends LayoutScreenController {
   List bottomAppBar = [
     {"title": "Home", "icon": Icons.home},
     {"title": "Category", "icon": Icons.apps,},
-    {"title": "Favorite", "icon":  Icons.favorite,},
+    {"title": "Profile", "icon":  Icons.person,},
     {"title": "settings", "icon": Icons.settings}
   ];
 
@@ -52,6 +52,8 @@ class LayoutScreenControllerImplement extends LayoutScreenController {
   // ignore: avoid_renaming_method_parameters
   void changeScreen(int index) {
     currentScreen = index;
+
     update();
+    // onDelete();
   }
 }

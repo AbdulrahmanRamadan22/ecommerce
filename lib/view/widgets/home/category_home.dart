@@ -36,7 +36,7 @@ class BuildCategoryItem extends GetView<HomeControllerImplement> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        controller.goToItems(controller.categories, i! , categoriesModel.id.toString()!);
+        controller.goToItems(controller.categories, i! , categoriesModel.id.toString());
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.29,
