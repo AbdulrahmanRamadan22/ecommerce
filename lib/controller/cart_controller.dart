@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../data/helper/status_request.dart';
 import '../data/remote/cart.dart';
 import '../models/cart_model.dart';
+import '../models/product_model.dart';
+import '../shared/constants/routes.dart';
 import '../shared/function/handing_datacontroller.dart';
 import '../shared/services/services.dart';
 import '../shared/styles/colors.dart';
@@ -123,12 +125,24 @@ class CartController extends GetxController {
   }
 
 
+  goToPageCheckout(){
+    if(dataCart.isEmpty) return Get.snackbar("alert", "The cart is empty");
+
+    Get.toNamed(AppRoute.checkout, arguments: {
+
+      "total":total.toString(),
+    });
+
+  }
+
+
 
   refreshPage() {
     resetVarCart();
     getCart();
     // update();
   }
+
 
 
 

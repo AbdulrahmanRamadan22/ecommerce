@@ -14,11 +14,21 @@ class AppImageAsset {
   static const String avatar = "$roteImages/avatar.png";
 
 
+
+  static const String deliveryImage2 = "$roteImages/delivery.png";
+
+  static const String drivethruImage = "$roteImages/drivethru.png";
+
+
+
   //=======================lottie======================
   static const String loading = "$roteLottie/loading.json";
   static const String noData = "$roteLottie/nodata.json";
   static const String offLine = "$roteLottie/offline.json";
   static const String serverError = "$roteLottie/server-error.json";
 //=============================================
+
+
+
 
 }

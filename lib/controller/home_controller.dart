@@ -67,6 +67,8 @@ class HomeControllerImplement extends HomeController {
   @override
   Future<void> initialData() async {
 
+
+
     token = myServices.sharedPreferences.getString("token") ?? "";
     name = myServices.sharedPreferences.getString("name");
     email = myServices.sharedPreferences.getString("email");
@@ -90,6 +92,8 @@ class HomeControllerImplement extends HomeController {
 
   @override
   Future<void> getData() async {
+
+
     products.clear();
 
     statusRequest = StatusRequest.loading;
@@ -102,6 +106,10 @@ class HomeControllerImplement extends HomeController {
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == true) {
+
+
+        myServices.sharedPreferences.setBool("address", response['data']['address']);
+
 
         categories.addAll(response["data"]['categories']);
         products.addAll(response["data"]['products']);

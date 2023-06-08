@@ -13,7 +13,12 @@ import 'cart_controller.dart';
 abstract class ProductDetailsController extends GetxController {}
 
 class ProductDetailsControllerImplement extends ProductDetailsController {
+
+
+  late SharedPreferences prefs;
+
   late Products productModel;
+
 
   CartController cartController = Get.put(CartController());
 
@@ -28,19 +33,21 @@ class ProductDetailsControllerImplement extends ProductDetailsController {
 
   int count = 1;
 
-  late SharedPreferences prefs;
   late String countKey;
 
 
 
 
   intialData() async{
-    statusRequest = StatusRequest.loading;
     productModel = Get.arguments['productModel'];
+
+    prefs = await SharedPreferences.getInstance(); // Initialize prefs here
+
+    statusRequest = StatusRequest.loading;
+
 
     countKey = '${productModel.id}count'; //
     // تعيين مفتاح الـ count الخاص بالمنتج
-    prefs = await SharedPreferences.getInstance(); // استرداد SharedPreferences
     count = prefs.getInt(countKey) ?? 1; // استرداد قيمة الـ count المحفوظة، إذا لم يتم العثور على القيمة، يتم تعيينها إلى 1
     statusRequest = StatusRequest.success;
     update();
@@ -110,6 +117,7 @@ class ProductDetailsControllerImplement extends ProductDetailsController {
   addTOCart() async
   {
 
+
     prefs.setInt(countKey, count); // حفظ قيمة الـ count الجديدة في SharedPreferences
 
     prefs = await SharedPreferences.getInstance(); //
@@ -119,8 +127,8 @@ class ProductDetailsControllerImplement extends ProductDetailsController {
   @override
   void onInit() async{
     intialData();
-    // count--;
-    prefs.setInt(countKey, count); // حفظ قيمة الـ count الجديدة في SharedPreferences
+
+    // prefs.setInt(countKey, count); // حفظ قيمة الـ count الجديدة في SharedPreferences
 
     super.onInit();
   }

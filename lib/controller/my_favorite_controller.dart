@@ -99,6 +99,8 @@ class MyFavoriteController extends GetxController {
       // productId: id,
     );
 
+
+
     data.removeWhere((element) => element.idFav == favroiteId);
 
 
@@ -117,6 +119,8 @@ class MyFavoriteController extends GetxController {
 
 
   }
+
+
 
 
 

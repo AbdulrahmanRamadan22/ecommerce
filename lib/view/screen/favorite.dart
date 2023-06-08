@@ -35,7 +35,7 @@ class FavoriteScreen extends StatelessWidget {
 
           leading: Padding(
             padding: const EdgeInsets.only(left: 24.0),
-            child: IconButton(icon:Icon(Icons.arrow_back_ios,color: AppColor.gray),onPressed: (){
+            child: IconButton(icon:const Icon(Icons.arrow_back_ios,color: AppColor.gray),onPressed: (){
 
               Get.back(
                 result: cartController.refreshPage(),

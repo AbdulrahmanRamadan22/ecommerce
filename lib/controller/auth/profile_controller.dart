@@ -38,6 +38,8 @@ import '../../view/widgets/shared/toast_api.dart';
 
    Future<void> initialData() async {
 
+
+
      token = myServices.sharedPreferences.getString("token") ?? "";
      name = myServices.sharedPreferences.getString("name");
      email = myServices.sharedPreferences.getString("email");
@@ -50,7 +52,7 @@ import '../../view/widgets/shared/toast_api.dart';
    }
 
 
-   @override
+
    ubdate() async {
      if (formState.currentState!.validate()) {
        statusRequest = StatusRequest.loading;
@@ -89,7 +91,6 @@ import '../../view/widgets/shared/toast_api.dart';
      phoneController.text = myServices.sharedPreferences.getString("phone")!;
      emailController.text = myServices.sharedPreferences.getString("email")! ;
 
-
      super.onInit();
    }
    @override
@@ -97,6 +98,8 @@ import '../../view/widgets/shared/toast_api.dart';
      nameController.dispose();
      phoneController.dispose();
      emailController.dispose();
+
+
      super.dispose();
    }
 

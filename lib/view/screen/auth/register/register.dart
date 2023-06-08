@@ -49,7 +49,7 @@ class RegisterScreen extends StatelessWidget {
                         prefix: Icons.person_outline,
                         type: TextInputType.name,
                         validate: (value) {
-                          return validInput(value!, 3, 100, "name");
+                          return validInput(value!, 3, 30, "name");
                         },
                         hint: 'Enter Name',
                       ),

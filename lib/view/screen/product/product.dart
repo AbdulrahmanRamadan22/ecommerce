@@ -43,6 +43,8 @@ class ProductScreen extends StatelessWidget {
 
                     }, onSubmitted: (String value) {
                       controller.onSearchProduct();
+                      controller.checkSearch(value);
+
                     },
                     // onIconFavorite: () {
                     //
@@ -54,6 +56,7 @@ class ProductScreen extends StatelessWidget {
 
                   const ListCategoryItems(),
                   const SizedBox(height: 20,),
+
               HandlingDataView(
                 statusRequest: controller.statusRequest,
                 widget:

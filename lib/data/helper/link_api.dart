@@ -38,5 +38,16 @@ static const String register="$server/users/register";
 
   static const String getCart="$server/carts/get-cart";
 
+//========================================Address====================
+
+  static const String addAddress="$server/address/add-address";
+  static const String updateAddress="$server/address/update-address";
+  static const String deleteAddress="$server/address/delete-address";
+  static const String getAddress="$server/address/get-address";
+
+
+
+
+
 
 }

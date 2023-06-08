@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:store_app_advanced/shared/constants/routes.dart';
 import 'package:store_app_advanced/view/widgets/shared/handling_dataview.dart';
 
 import '../../../controller/address/map_controller_address.dart';
@@ -21,59 +20,61 @@ class MapScreen extends StatelessWidget {
       //       style: TextStyle(color: AppColor.gray, fontSize: 20),
       //     )),
 
-     body: Container(
-       child: GetBuilder<MapController>(
-         builder: (controllerPage) {
-           return HandlingDataView(
-             statusRequest: controllerPage.statusRequest,
-             widget:
-              Column(
-               children: [
-                 // ignore: unnecessary_null_comparison
-                 if(controllerPage.kGooglePlex != null)    Expanded(
-                   child: Stack(
-                     alignment: Alignment.bottomCenter,
-                     children: [
-                       GoogleMap(
-                         mapType: MapType.normal,
-                         initialCameraPosition: controllerPage.kGooglePlex,
-                         onTap: (latLong){
-                           controllerPage.addMarkers(latLong);
-                         },
-                         markers:controllerPage.markers.toSet() ,
-                         onMapCreated: (GoogleMapController controllerMap) {
-                           controllerPage.completerController!.complete(controllerMap);
-                         },
-                       ),
+     body: GetBuilder<MapController>(
+       builder: (controllerPage) {
+         return HandlingDataView(
+           statusRequest: controllerPage.statusRequest,
+           widget:
+            Column(
+             children: [
+               // ignore: unnecessary_null_comparison
+               if(controllerPage.kGooglePlex != null)    Expanded(
+                 child: Stack(
+                   alignment: Alignment.bottomCenter,
+                   children: [
+                     GoogleMap(
+                       mapType: MapType.normal,
+                       initialCameraPosition: controllerPage.kGooglePlex,
+                       onTap: (latLong){
+                         controllerPage.addMarkers(latLong);
+                       },
+                       markers:controllerPage.markers.toSet() ,
+                       onMapCreated: (GoogleMapController controllerMap) {
+                         controllerPage.completerController!.complete(controllerMap);
+                       },
+                     ),
 
-                       Container(
-                         padding: EdgeInsets.only(bottom: 10),
-                         child: defaultButton(
-                             text: 'completion',
-                             width: 200,
-                             height: 40,
-                             onPressed: () {
+                     Container(
+                       padding: const EdgeInsets.only(bottom: 10),
+                       child: defaultButton(
+                           text: 'completion',
+                           width: 200,
+                           height: 40,
+                           onPressed: () {
 
+                             if(controllerPage.address==true)
+                               {
+                                 controllerPage.goToPageUpdateDetailsAddress();
+
+                               }
+
+                             else{
                                controllerPage.goToPageAddDetailsAddress();
 
-                               // if(controllerPage.address==false)
-                               //   {
-                               //     Get.toNamed(AppRoute.addressAdd);
-                               //   }
-
-
                              }
-                         ),
-                       ),
-                     ],
-                   ),
-                 ),
 
-               ],
-             ),
-           );
-         }
-       ),
+
+                           }
+                       ),
+                     ),
+                   ],
+                 ),
+               ),
+
+             ],
+           ),
+         );
+       }
      ),
 
     );

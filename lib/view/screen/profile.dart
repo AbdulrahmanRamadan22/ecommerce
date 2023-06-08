@@ -90,6 +90,7 @@ class ProfileScreen extends StatelessWidget {
                       hint: 'Enter Phone',
                       radius: 16,
                     ),
+
                     const SizedBox(
                       height: 30,
                     ),

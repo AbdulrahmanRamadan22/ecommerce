@@ -14,7 +14,7 @@ class MapController extends GetxController{
   MyServices myServices = Get.find();
 
   // ignore: prefer_typing_uninitialized_variables
-  var address;
+  late bool address;
 
    Completer<GoogleMapController>? completerController =
   Completer<GoogleMapController>();
@@ -51,6 +51,16 @@ class MapController extends GetxController{
 
 
 
+  goToPageUpdateDetailsAddress(){
+
+    Get.toNamed(AppRoute.addressUpdate,arguments: {
+      "lat":  lat.toString(),
+      "long" :long.toString()
+
+    });
+  }
+
+
    Position? postion;
 
    getCurrentLocation() async {
@@ -67,7 +77,7 @@ class MapController extends GetxController{
 
   Future<void> initialData() async {
 
-    address = myServices.sharedPreferences.getInt("address");
+    address = myServices.sharedPreferences.getBool("address")!;
 
   }
 
@@ -76,9 +86,7 @@ class MapController extends GetxController{
 
 
 
-
 @override
-
   void onInit() {
   initialData();
   getCurrentLocation();

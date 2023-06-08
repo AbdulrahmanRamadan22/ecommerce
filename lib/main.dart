@@ -25,6 +25,7 @@ class EcommerceApp extends StatelessWidget {
   const EcommerceApp({super.key});
 
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
 

@@ -43,7 +43,6 @@ class ProductControllerImplement extends SearchControllerImplement {
   void onInit() {
     intialData();
     super.onInit();
-
   }
 
   intialData() {

@@ -37,7 +37,7 @@ class SearchControllerImplement extends GetxController {
 
 
   // ignore: non_constant_identifier_names
-  List<Search> Listdata=[];
+  List<Products> Listdata=[];
 
 
   bool isSearch = false;
@@ -59,25 +59,30 @@ class SearchControllerImplement extends GetxController {
 
 
 
-  late final List<Products> listdata;
+  // late final List<Products> listdata;
 
 
   Future<void> initialData() async {
     token = myServices.sharedPreferences.getString("token") ?? "";
     statusRequest = StatusRequest.loading;
 
-    searchModel = Get.arguments['searchModel'];
-    statusRequest = StatusRequest.success;
+    var searchModelArg = Get.arguments['searchModel'];
+
+    if (searchModelArg != null) {
+      searchModel = searchModelArg;
+      statusRequest = StatusRequest.success;
+    } else {
+      statusRequest = StatusRequest.failure;
+    }
     update();
-
-
   }
-
   @override
   void onInit() {
     search=TextEditingController();
     initialData();
     searchProductData();
+
+
     super.onInit();
   }
 
@@ -102,7 +107,7 @@ class SearchControllerImplement extends GetxController {
 
         // products.addAll(response["data"]['products']);
 
-        Listdata.addAll(responsedata.map((e) => Search.fromJson(e)));
+        Listdata.addAll(responsedata.map((e) => Products.fromJson(e)));
 
         // products.addAll(response["data"]['products']);
       } else {
@@ -114,31 +119,6 @@ class SearchControllerImplement extends GetxController {
     // getData();
   }
 
-
-  goToPageProductDetailsSearch(Search searchModel) {
-    Get.toNamed("productDetailsSearch", arguments: {
-      "searchModel": searchModel});
-
-  }
-
-  add() {
-
-    count++;
-
-    // addProduct(productModel.id.toString()!, count.toString());
-
-    update();
-
-
-  }
-
-  remove() {
-    if (count > 1) {
-      count--;
-      // removeProduct(productModel.id.toString()!, count.toString());
-      update();
-    }
-  }
 
 
 

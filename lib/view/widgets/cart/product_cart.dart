@@ -1,10 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store_app_advanced/models/home_model.dart';
-
 import '../../../controller/cart_controller.dart';
-import '../../../controller/product _details_controller.dart';
 import '../../../models/cart_model.dart';
 import '../../../shared/styles/colors.dart';
 
@@ -19,7 +16,9 @@ class ProductCart extends GetView<CartController> {
         child: ListView.separated(
           itemBuilder: (context, index) {
             return ListProductCart(
+
               cartProduct: controller.dataCart[index],
+
             );
           },
           itemCount: controller.dataCart.length,
@@ -36,7 +35,7 @@ class ProductCart extends GetView<CartController> {
 
 
 class ListProductCart extends GetView<CartController> {
-  const ListProductCart({Key? key, required this.cartProduct})
+  const ListProductCart( {Key? key, required this.cartProduct})
       : super(key: key);
 
   final CartItems cartProduct;
@@ -45,15 +44,11 @@ class ListProductCart extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
 
-    ProductDetailsControllerImplement productDetailsController= Get.put(ProductDetailsControllerImplement());
-
     return GetBuilder<CartController>(
 
     builder: (controller) {
         return InkWell(
-
           onTap: (){
-
 
           },
           child: SizedBox(
@@ -97,6 +92,7 @@ class ListProductCart extends GetView<CartController> {
                         Row(
                           children: [
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   "${cartProduct.product!.price} EGP",
@@ -109,69 +105,23 @@ class ListProductCart extends GetView<CartController> {
                                   height: 10,
                                 ),
                                 Container(
-                                  width: 130,
+                                  width: 140,
                                   height: 40,
                                   color: Colors.grey.shade200,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-
-                                       IconButton(
-                                            onPressed: () {
-                                              add(){
-
-                                              }
-
-                                             // controller.add();
-
-                                              // cartController.addAndRemove(cartProduct.product!.id.toString(),
-                                              //     cartController.count.toString()
-                                              // );
-
-                                            },
-                                            icon: const Icon(
-                                              Icons.add,
-                                              color: Colors.black,
-                                            ),
-                                            padding: EdgeInsets.zero,
-                                            iconSize: 18,
-                                          ),
-
-
-                                      const SizedBox(
-                                        width: 5,
+                                  child:Center(
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: 'quantity: ',
+                                          style: const TextStyle(color: AppColor.defaultColor, fontSize: 18),
+                                          children: <TextSpan>[
+                                            TextSpan(text: '${cartProduct.quantity}',
+                                                style: const TextStyle(color: AppColor.black, fontSize: 16,fontWeight: FontWeight.w900)
+                                            )
+                                          ]
                                       ),
-                                      Text(
-                                        "${cartProduct.quantity}",
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontSize: 20, color: Colors.black),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      IconButton(
-                                        onPressed: () {
-
-                                          // controller.remove();
-
-
-                                          // cartController.remove();
-
-                                          // cartController.addAndRemove(cartProduct.product!.id.toString(),
-                                          //     cartController.count.toString()
-                                          // );
-
-                                        },
-                                        icon: const Icon(
-                                          Icons.remove,
-                                          color: Colors.black,
-                                        ),
-                                        iconSize: 18,
-                                        padding: EdgeInsets.zero,
-                                      ),
-                                    ],
+                                    ),
                                   ),
+
                                 ),
                               ],
                             ),
@@ -201,21 +151,7 @@ class ListProductCart extends GetView<CartController> {
                           ],
                         ),
 
-                        // GetBuilder<MyFavoriteController>(
-                        //     builder: (context) {
-                        //       return IconButton(
-                        //         onPressed: (){
-                        //
-                        //           // controller.removeFavorite(favoriteProduct.id_fav!.toString());
-                        //           // ignore: invalid_use_of_protected_member
-                        //         },
-                        //         icon: const Icon(
-                        //           Icons.delete_outline,
-                        //           color: AppColor.red,
-                        //         ),
-                        //       );
-                        //     }
-                        // ),
+
                       ],
                     ),
                   ),

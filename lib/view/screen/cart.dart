@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/styles/colors.dart';
 import 'package:store_app_advanced/view/widgets/shared/handling_dataview.dart';
 
-import '../../../controller/cart_controller.dart';
-import '../../widgets/cart/custom_bottom_navgationbar_cart.dart';
-import '../../widgets/cart/product_cart.dart';
+import '../../controller/cart_controller.dart';
+import '../widgets/cart/custom_bottom_navgationbar_cart.dart';
+import '../widgets/cart/product_cart.dart';
 
 // ignore: must_be_immutable
 class CartScreen extends StatelessWidget {
@@ -26,7 +26,7 @@ class CartScreen extends StatelessWidget {
                 return HandlingDataView(
                   statusRequest: controller.statusRequest,
                     widget:
-                     BottomNavgationBarCart(totalPrice: "${controller.total}",price:"55",shipping: "300"));
+                     BottomNavgationBarCart(totalPrice: "${controller.total}"));
               }
             ),
 

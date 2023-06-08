@@ -67,7 +67,6 @@ class BuildCatItem extends GetView<CategoryControllerImplement> {
                 // Use an Expanded widget to allow the text to fill the remaining space
                 Expanded(
                   flex: 3,
-
                   child: Responsive(
                     smallScreen: Text(
                       maxLines: 2,

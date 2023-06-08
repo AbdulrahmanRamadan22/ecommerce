@@ -4,6 +4,7 @@ import 'package:store_app_advanced/shared/middleware/my_middleware.dart';
 import 'package:store_app_advanced/view/screen/address/add_address.dart';
 import 'package:store_app_advanced/view/screen/address/map.dart';
 import 'package:store_app_advanced/view/screen/address/address_view.dart';
+import 'package:store_app_advanced/view/screen/address/ubdate_address.dart';
 import 'package:store_app_advanced/view/screen/auth/forgetpassword/forget_password_screen.dart';
 import 'package:store_app_advanced/view/screen/auth/forgetpassword/reset_password_screen.dart';
 import 'package:store_app_advanced/view/screen/auth/forgetpassword/verification_code_screen.dart';
@@ -11,14 +12,14 @@ import 'package:store_app_advanced/view/screen/auth/login.dart';
 import 'package:store_app_advanced/view/screen/auth/register/register.dart';
 import 'package:store_app_advanced/view/screen/auth/register/success_register.dart';
 import 'package:store_app_advanced/view/screen/auth/register/verification_code_register_screen.dart';
-import 'package:store_app_advanced/view/screen/cart/cart.dart';
+import 'package:store_app_advanced/view/screen/cart.dart';
 import 'package:store_app_advanced/view/screen/category.dart';
+import 'package:store_app_advanced/view/screen/cheakout.dart';
 import 'package:store_app_advanced/view/screen/favorite.dart';
 import 'package:store_app_advanced/view/screen/home.dart';
 import 'package:store_app_advanced/view/screen/on_boarding.dart';
 import 'package:store_app_advanced/view/screen/product/product.dart';
 import 'package:store_app_advanced/view/screen/product/product_details.dart';
-import 'package:store_app_advanced/view/screen/product/product_detalis_search.dart';
 import 'package:store_app_advanced/view/screen/profile.dart';
 import 'package:store_app_advanced/view/screen/settings.dart';
 import 'package:store_app_advanced/view/widgets/category/product_category.dart';
@@ -74,6 +75,11 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.addressAdd, page: () =>   const AddressAdd()),
 
   GetPage(name: AppRoute.map, page: () =>   const MapScreen()),
+
+
+  GetPage(name: AppRoute.addressUpdate, page: () =>   const AddressUpdate()),
+
+  GetPage(name: AppRoute.checkout, page: () =>   const CheckoutScreen()),
 
 
 ];

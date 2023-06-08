@@ -68,6 +68,13 @@ class CategoryControllerImplement extends CategoryController {
     });
   }
 
+
+  refreshPage() {
+    getData();
+    update();
+  }
+
+
 }
 
 

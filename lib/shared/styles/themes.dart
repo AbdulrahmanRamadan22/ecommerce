@@ -58,6 +58,8 @@ ThemeData lightTheme = ThemeData(
     titleSpacing: 20.0,
     centerTitle: true,
 
+
+
     systemOverlayStyle: SystemUiOverlayStyle(
       // statusBarBrightness: Brightness.light,
 
@@ -67,7 +69,7 @@ ThemeData lightTheme = ThemeData(
     backgroundColor: Colors.white,
     elevation: 0.0,
     titleTextStyle: TextStyle(
-      color: AppColor.black,
+      color: AppColor.gray,
       fontSize: 20.0,
       fontWeight: FontWeight.w900,
     ),

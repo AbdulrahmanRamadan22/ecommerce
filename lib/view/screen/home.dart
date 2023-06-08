@@ -5,7 +5,7 @@ import 'package:store_app_advanced/view/widgets/shared/handling_dataview.dart';
 
 import '../../controller/favorite_controller.dart';
 import '../../controller/home_controller.dart';
-import '../../models/search_product.dart';
+import '../../models/product_model.dart';
 import '../../shared/styles/colors.dart';
 import '../widgets/home/banner.dart';
 import '../widgets/home/category_home.dart';
@@ -58,7 +58,10 @@ class HomeScreen extends StatelessWidget {
 
                         }, onSubmitted: (String value) {
 
+
                           controller.onSearchProduct();
+
+                          controller.checkSearch(value);
 
                         },
                           // onIconFavorite: () {
@@ -106,7 +109,7 @@ class HomeScreen extends StatelessWidget {
 class ListsSearchProduct extends GetView<HomeControllerImplement> {
   const ListsSearchProduct({Key? key, required this.searchModel, }) : super(key: key);
 
-  final List<Search> searchModel;
+  final List<Products> searchModel;
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +127,8 @@ class ListsSearchProduct extends GetView<HomeControllerImplement> {
             return   InkWell(
               onTap: (){
 
-                controller.goToPageProductDetailsSearch(searchModel[index]);
+                controller.goToPageProductDetails(searchModel[index]);
+
               },
               child: SizedBox(
                 height: 140,

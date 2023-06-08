@@ -54,7 +54,7 @@ class ListProductItem extends GetView<ProductControllerImplement>{
 
                       ),
                     ),
-                    if(productsModel.discount !=null)
+                    if(productsModel.discount !=0 )
                        Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: screenSize.width * 0.01),
@@ -95,7 +95,9 @@ class ListProductItem extends GetView<ProductControllerImplement>{
                         ),
                       ),
 
-                      if(productsModel.discount !=null)
+                      if(productsModel.discount !=0 )
+
+
                       Text(
                         "${productsModel.oldPrice}",
                         style: TextStyle(

@@ -23,16 +23,16 @@ class HomeModel {
 }
 
 class Data {
-  List<Products>? products;
+  List<ProductsHome>? products;
   List<Categories>? categories;
 
   Data({this.products, this.categories});
 
   Data.fromJson(Map<String, dynamic> json) {
     if (json['products'] != null) {
-      products = <Products>[];
+      products = <ProductsHome>[];
       json['products'].forEach((v) {
-        products!.add(Products.fromJson(v));
+        products!.add(ProductsHome.fromJson(v));
       });
     }
     if (json['categories'] != null) {
@@ -55,7 +55,7 @@ class Data {
   }
 }
 
-class Products {
+class ProductsHome {
   int? id;
   double? price;
   int? oldPrice;
@@ -66,7 +66,7 @@ class Products {
   bool? inFavorites;
   bool? inCart;
 
-  Products(
+  ProductsHome(
       {this.id,
         this.price,
         this.oldPrice,
@@ -77,7 +77,7 @@ class Products {
         this.inFavorites,
         this.inCart});
 
-  Products.fromJson(Map<String, dynamic> json) {
+  ProductsHome.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     price = json['price'];
     oldPrice = json['old_price'];

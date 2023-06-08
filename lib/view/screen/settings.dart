@@ -37,6 +37,13 @@ class SettingsScreen extends StatelessWidget {
             ),
             ListTile(
               onTap: () {
+                Get.toNamed(AppRoute.addressView);
+              },
+              trailing: const Icon(Icons.location_on_outlined),
+              title: const Text("Address",style: TextStyle(fontSize: 18)),
+            ),
+            ListTile(
+              onTap: () {
                 // Get.toNamed(AppRoute.orderspending);
               },
               trailing: const Icon(Icons.card_travel),
@@ -49,13 +56,7 @@ class SettingsScreen extends StatelessWidget {
               trailing: const Icon(Icons.card_travel),
               title: const Text("Archive",style: TextStyle(fontSize: 18)),
             ),
-            ListTile(
-              onTap: () {
-                Get.toNamed(AppRoute.addressView);
-              },
-              trailing: const Icon(Icons.location_on_outlined),
-              title: const Text("Address",style: TextStyle(fontSize: 18)),
-            ),
+
             ListTile(
               onTap: () {},
               trailing: const Icon(Icons.help_outline_rounded),
