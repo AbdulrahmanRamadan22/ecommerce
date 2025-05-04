@@ -2,9 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/checkout_controller.dart';
+import '../../controller/orders/checkout_controller.dart';
 import '../../shared/constants/image_assets.dart';
-import '../../shared/constants/routes.dart';
 import '../../shared/styles/colors.dart';
 import '../widgets/checkout/carddeliveerytype.dart';
 import '../widgets/checkout/cardpaymentmethod.dart';
@@ -27,6 +26,8 @@ class CheckoutScreen  extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20,left: 20,bottom: 10),
         child: defaultButton(
           onPressed: (){
+
+            controller.CheckoutOrder();
 
             // Get.toNamed(AppRoute.checkout);
           },
@@ -55,22 +56,22 @@ class CheckoutScreen  extends StatelessWidget {
 
                 InkWell(
                   onTap: () {
-                    controller.choosePaymentMethod("1");
+                    controller.choosePaymentMethod("1")  ;//Cash
                   },
                   child: CardPaymentMethodCheckout(
                       title: "Cash On Delivery",
-                      isActive: controller.paymentMethod == "1"
+                      isActive: controller.paymentMethod == "1"  //Cash
                           ? true
                           : false),
                 ),
                 const SizedBox(height: 10),
                 InkWell(
                   onTap: () {
-                    controller.choosePaymentMethod("2");
+                    controller.choosePaymentMethod("2");  //card
                   },
                   child: CardPaymentMethodCheckout(
                       title: "Payment Cards",
-                      isActive: controller.paymentMethod == "2"
+                      isActive: controller.paymentMethod == "2"  //card
                           ? true
                           : false),
                 ),
@@ -87,24 +88,24 @@ class CheckoutScreen  extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        controller.chooseDeliveryType("delivery");
+                        controller.chooseDeliveryType("0");  //Delivery
                       },
                       child: CardDeliveryTypeCheckout(
                           imageName: AppImageAsset.deliveryImage2,
                           title: "Delivery",
-                          active: controller.deliveryType == "delivery"
+                          active: controller.deliveryType == "0"   //Delivery
                               ? true
                               : false),
                     ),
                     const SizedBox(width: 10),
                     InkWell(
                       onTap: () {
-                        controller.chooseDeliveryType("receive");
-                      },
+                        controller.chooseDeliveryType("1"); //Receive
+                        },
                       child: CardDeliveryTypeCheckout(
                           imageName: AppImageAsset.drivethruImage,
                           title: "Receive",
-                          active: controller.deliveryType == "receive"
+                          active: controller.deliveryType == "1"  //Receive
                               ? true
                               : false),
                     ),
@@ -113,7 +114,7 @@ class CheckoutScreen  extends StatelessWidget {
 
 
                 const SizedBox(height: 20),
-                if (controller.deliveryType == "delivery")
+                // if (controller.deliveryType == "0")
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -130,7 +131,7 @@ class CheckoutScreen  extends StatelessWidget {
                             (index) => InkWell(
                           onTap: () {
                             controller.chooseShippingAddress(
-                                controller.data[index].id.toString()!);
+                                controller.data[index].id.toString());
                           },
                           child: CardShppingAddressCheckout(
                               title:
