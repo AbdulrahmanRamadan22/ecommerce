@@ -2,24 +2,24 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/styles/colors.dart';
-
 import '../../../controller/favorite_controller.dart';
 import '../../../controller/product_controller.dart';
 import '../../../models/product_model.dart';
 
-
-
-class ListProductItem extends GetView<ProductControllerImplement>{
-  const ListProductItem( {Key? key, required this.productsModel,}) : super(key: key);
- final Products productsModel;
+class ListProductItem extends GetView<ProductControllerImplement> {
+  const ListProductItem({
+    Key? key,
+    required this.productsModel,
+  }) : super(key: key);
+  final Products productsModel;
 
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
 
     return InkWell(
-      onTap: (){
-   controller.goToPageProductDetails(productsModel);
+      onTap: () {
+        controller.goToPageProductDetails(productsModel);
       },
       child: Card(
         elevation: 5,
@@ -45,26 +45,23 @@ class ListProductItem extends GetView<ProductControllerImplement>{
                   alignment: AlignmentDirectional.bottomStart,
                   children: [
                     Hero(
-                      tag:"ss${productsModel.id}",
+                      tag: "ss${productsModel.id}",
                       child: CachedNetworkImage(
-
                         imageUrl: ("${productsModel.image}"),
                         width: double.infinity,
                         height: 130,
-
                       ),
                     ),
-                    if(productsModel.discount !=0 )
-                       Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: screenSize.width * 0.01),
-                      color: Colors.red,
-                      child: const Text(
-                        "DISCOUNT",
-                        style: TextStyle(fontSize: 10, color: Colors.white),
+                    if (productsModel.discount != 0)
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: screenSize.width * 0.01),
+                        color: Colors.red,
+                        child: const Text(
+                          "DISCOUNT",
+                          style: TextStyle(fontSize: 10, color: Colors.white),
+                        ),
                       ),
-                    ),
-
                   ],
                 ),
               ),
@@ -94,61 +91,53 @@ class ListProductItem extends GetView<ProductControllerImplement>{
                           fontSize: screenSize.width * 0.038,
                         ),
                       ),
-
-                      if(productsModel.discount !=0 )
-
-
-                      Text(
-                        "${productsModel.oldPrice}",
-                        style: TextStyle(
-                          fontSize: screenSize.width * 0.035,
-                          decoration: TextDecoration.lineThrough,
-                          height: 1.1,
+                      if (productsModel.discount != 0)
+                        Text(
+                          "${productsModel.oldPrice}",
+                          style: TextStyle(
+                            fontSize: screenSize.width * 0.035,
+                            decoration: TextDecoration.lineThrough,
+                            height: 1.1,
+                          ),
                         ),
-                      ),
                     ],
                   ),
-
                   const Spacer(),
+                  GetBuilder<FavoriteController>(builder: (controller) {
+                    return IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        if (controller.isFavorite[productsModel.id] == true) {
+                          controller.setFavorite(productsModel.id, false);
 
-                  GetBuilder<FavoriteController>(
-                    builder: (controller) {
-                      return IconButton(
-
-                        padding: EdgeInsets.zero,
-                        onPressed: () {
-                          if(controller.isFavorite[productsModel.id]==true){
-                            controller.setFavorite(productsModel.id, false);
-
-                            controller.removeFavorite(productsModel.id.toString());
-                          }
-                          else{
-
-                            controller.setFavorite(productsModel.id, true);
-                            controller.addFavorite(productsModel.id.toString());
-
-                          }
-                        },
-                        icon:controller.isFavorite[productsModel.id]==true? CircleAvatar(
-                          radius: screenSize.width * 0.035,
-                          backgroundColor: AppColor.defaultColor,
-                          child: Icon(
-                            Icons.favorite_border,
-                            size: screenSize.width * 0.045,
-                            color: Colors.white,
-                          ),
-                        ):CircleAvatar(
-                          radius: screenSize.width * 0.035,
-                          backgroundColor: AppColor.gray,
-                          child: Icon(
-                            Icons.favorite_border,
-                            size: screenSize.width * 0.045,
-                            color: Colors.white,
-                          ),
-                        ),
-                      );
-                    }
-                  ),
+                          controller
+                              .removeFavorite(productsModel.id.toString());
+                        } else {
+                          controller.setFavorite(productsModel.id, true);
+                          controller.addFavorite(productsModel.id.toString());
+                        }
+                      },
+                      icon: controller.isFavorite[productsModel.id] == true
+                          ? CircleAvatar(
+                              radius: screenSize.width * 0.035,
+                              backgroundColor: AppColor.defaultColor,
+                              child: Icon(
+                                Icons.favorite_border,
+                                size: screenSize.width * 0.045,
+                                color: Colors.white,
+                              ),
+                            )
+                          : CircleAvatar(
+                              radius: screenSize.width * 0.035,
+                              backgroundColor: AppColor.gray,
+                              child: Icon(
+                                Icons.favorite_border,
+                                size: screenSize.width * 0.045,
+                                color: Colors.white,
+                              ),
+                            ),
+                    );
+                  }),
                 ],
               ),
             ],

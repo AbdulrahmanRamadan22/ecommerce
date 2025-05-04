@@ -5,8 +5,6 @@ import 'package:store_app_advanced/shared/styles/colors.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 import '../../../../controller/auth/register/verification_code_register_controller.dart';
-import '../../../../data/helper/status_request.dart';
-import '../../../widgets/shared/default_button.dart';
 import '../../../widgets/shared/handling_dataview.dart';
 
 

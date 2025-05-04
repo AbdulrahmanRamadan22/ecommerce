@@ -42,8 +42,28 @@ class AppRoute {
 
 
 
+  static const String orderPending= "/orderPending" ;
+
+  static const String ordersRating= "/ordersRating" ;
 
 
+
+
+  //========================Admin===================
+
+  static const String homeAdmin= "/homeAdmin" ;
+
+  //categories
+  static const String categoriesView= "/categoriesView" ;
+  static const String categoriesAdd= "/categoriesAdd" ;
+  static const String categoriesUpdate= "/categoriesUpdate" ;
+  static const String categoriesDelete= "/categoriesDelete" ;
+
+  //Product
+  static const String productView= "/productView" ;
+  static const String productAdd= "/productAdd" ;
+  static const String productUpdate= "/productUpdate" ;
+  static const String productDelete= "/productDelete" ;
 
 
 

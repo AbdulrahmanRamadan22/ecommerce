@@ -1,14 +1,10 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/shared/constants/routes.dart';
-
 import '../../data/remote/auth/login.dart';
 import '../../data/helper/status_request.dart';
 import '../../shared/function/handing_datacontroller.dart';
 import '../../shared/services/services.dart';
-import '../../shared/styles/colors.dart';
-import '../../view/widgets/shared/toast_api.dart';
 
 abstract class LoginController extends GetxController {
   // ignore: non_constant_identifier_names
@@ -26,11 +22,8 @@ class LoginControllerImplement extends LoginController{
   bool isShowPassword=true;
 
   StatusRequest statusRequest=StatusRequest.none;
-
   LoginData loginData = LoginData(Get.find()) ;
-
   MyServices myServices = Get.find();
-
 
 
   showPassword(){
@@ -51,12 +44,14 @@ class LoginControllerImplement extends LoginController{
       print("=============================== Controller $response ") ;
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
+
         if(response["status"]==true)
           {
-            showToast(
-                msg: "Login done successfully",
-                backgroundColor:AppColor.defaultColor
-            );
+
+            Get.defaultDialog(
+                title: "success",
+
+                middleText: "Login done successfully");
 
             myServices.sharedPreferences.setInt("id", response['data']['id']);
             myServices.sharedPreferences.setString("name", response['data']['name']) ;
@@ -66,26 +61,44 @@ class LoginControllerImplement extends LoginController{
             myServices.sharedPreferences.setString("token", response['data']['token']) ;
             myServices.sharedPreferences.setInt("points", response['data']['points']);
             myServices.sharedPreferences.setInt("credit", response['data']['credit']);
+            myServices.sharedPreferences.setString("role", response['data']['role']) ;
 
+//======================LoginUser========================
 
-            myServices.sharedPreferences.setString("step","2") ;
-            Get.offNamed(AppRoute.layout, arguments: {
-              "token":myServices.sharedPreferences.getString("token"),
-            });
+            if(myServices.sharedPreferences.getString("role") == "user")
+            {
+              myServices.sharedPreferences.setString("step","2") ;
 
+              Get.offAllNamed(AppRoute.layout, arguments: {
+
+                "token":myServices.sharedPreferences.getString("token"),
+              }
+              );
+            }
+            //==============================================
+
+       //======================LoginAdmin========================
+
+            if(myServices.sharedPreferences.getString("role") == "admin")
+            {
+              // myServices.sharedPreferences.setString("step","3") ;
+
+              Get.offAllNamed(AppRoute.homeAdmin, arguments: {
+                "token":myServices.sharedPreferences.getString("token"),
+              }
+              );
+            }
           }
-        else{
-          showToast(
-              msg: "Email Or password Not Correct",
-              backgroundColor:AppColor.red
-          );
-          statusRequest = StatusRequest.failure;
-        }
-        update();
       }
-      update();
+      else{
+        Get.defaultDialog(
+            title: "Error",
+            middleText: "Email Or password Not Correct");
+        statusRequest = StatusRequest.failure;
+      }
+      // update();
     }
-    // update();
+    update();
   }
 
 
@@ -96,10 +109,10 @@ class LoginControllerImplement extends LoginController{
 
   @override
   void onInit() {
-    FirebaseMessaging.instance.getToken().then((value) {
-      // print("token $value");
-      // String? token = value;
-    });
+    // FirebaseMessaging.instance.getToken().then((value) {
+    //   print("tokenFirebaseMessaging $value");
+    //   // String? token = value;
+    // });
 
     email = TextEditingController();
     password = TextEditingController();

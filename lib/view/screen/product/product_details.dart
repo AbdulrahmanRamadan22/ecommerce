@@ -54,19 +54,13 @@ class ProductDetailsScreen extends StatelessWidget {
                     onPressed: () {
                      controller.addTOCart();
                       controller.cartController.addAndRemove(
-                          controller.productModel.id.toString()!,
+                          controller.productModel.id.toString(),
                           controller.count.toString());
                     },
                     text: "Add To Cart",
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  defaultButton(
-                    onPressed: () {},
-                    text: "Buy Now",
-                    backGround: AppColor.gray,
-                  ),
+
+
                 ],
               ),
             );

@@ -10,7 +10,10 @@ class VerificationCodeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VerifyCodeControllerImplement controller= Get.put(VerifyCodeControllerImplement());
+    VerifyCodeControllerImplement VerifyCodeController= Get.put(VerifyCodeControllerImplement());
+
+
+
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 

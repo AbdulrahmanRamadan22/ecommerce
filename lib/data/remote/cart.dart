@@ -39,5 +39,16 @@ class CartData {
     return response.fold((l) => l, (r) => r);
   }
 
+  deleteAllCartData(
+
+      {required String token, } ) async {
+    var response = await api.postData(
+      body: {},
+      url:"$server/carts/delete-all",
+      token: token,
+    );
+    return response.fold((l) => l, (r) => r);
+  }
+
 
 }

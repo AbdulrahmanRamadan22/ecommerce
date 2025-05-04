@@ -6,12 +6,12 @@ class FavoritesModel {
 
   FavoritesModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -26,32 +26,32 @@ class Data {
   int? from;
   int? lastPage;
   String? lastPageUrl;
-  Null? nextPageUrl;
+  void nextPageUrl;
   String? path;
   int? perPage;
-  Null? prevPageUrl;
+  void prevPageUrl;
   int? to;
   int? total;
 
   Data(
       {this.favoritesPorduct,
-        this.currentPage,
-        this.firstPageUrl,
-        this.from,
-        this.lastPage,
-        this.lastPageUrl,
-        this.nextPageUrl,
-        this.path,
-        this.perPage,
-        this.prevPageUrl,
-        this.to,
-        this.total});
+      this.currentPage,
+      this.firstPageUrl,
+      this.from,
+      this.lastPage,
+      this.lastPageUrl,
+      this.nextPageUrl,
+      this.path,
+      this.perPage,
+      this.prevPageUrl,
+      this.to,
+      this.total});
 
   Data.fromJson(Map<String, dynamic> json) {
     if (json['favorites_porduct'] != null) {
       favoritesPorduct = <FavoritesPorduct>[];
       json['favorites_porduct'].forEach((v) {
-        favoritesPorduct!.add(new FavoritesPorduct.fromJson(v));
+        favoritesPorduct!.add(FavoritesPorduct.fromJson(v));
       });
     }
     currentPage = json['current_page'];
@@ -68,22 +68,22 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.favoritesPorduct != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (favoritesPorduct != null) {
       data['favorites_porduct'] =
-          this.favoritesPorduct!.map((v) => v.toJson()).toList();
+          favoritesPorduct!.map((v) => v.toJson()).toList();
     }
-    data['current_page'] = this.currentPage;
-    data['first_page_url'] = this.firstPageUrl;
-    data['from'] = this.from;
-    data['last_page'] = this.lastPage;
-    data['last_page_url'] = this.lastPageUrl;
-    data['next_page_url'] = this.nextPageUrl;
-    data['path'] = this.path;
-    data['per_page'] = this.perPage;
-    data['prev_page_url'] = this.prevPageUrl;
-    data['to'] = this.to;
-    data['total'] = this.total;
+    data['current_page'] = currentPage;
+    data['first_page_url'] = firstPageUrl;
+    data['from'] = from;
+    data['last_page'] = lastPage;
+    data['last_page_url'] = lastPageUrl;
+    // data['next_page_url'] = nextPageUrl;
+    data['path'] = path;
+    data['per_page'] = perPage;
+    // data['prev_page_url'] = prevPageUrl;
+    data['to'] = to;
+    data['total'] = total;
     return data;
   }
 }
@@ -97,14 +97,14 @@ class FavoritesPorduct {
   FavoritesPorduct.fromJson(Map<String, dynamic> json) {
     idFav = json['id_fav'];
     porduct =
-    json['porduct'] != null ? new Porduct.fromJson(json['porduct']) : null;
+        json['porduct'] != null ? Porduct.fromJson(json['porduct']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id_fav'] = this.idFav;
-    if (this.porduct != null) {
-      data['porduct'] = this.porduct!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id_fav'] = idFav;
+    if (porduct != null) {
+      data['porduct'] = porduct!.toJson();
     }
     return data;
   }
@@ -112,21 +112,21 @@ class FavoritesPorduct {
 
 class Porduct {
   int? id;
-  double? price;
-  double? oldPrice;
-  double? discount;
+  num? price;
+  num? oldPrice;
+  num? discount;
   String? image;
   String? name;
   String? description;
 
   Porduct(
       {this.id,
-        this.price,
-        this.oldPrice,
-        this.discount,
-        this.image,
-        this.name,
-        this.description});
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      this.name,
+      this.description});
 
   Porduct.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -139,14 +139,14 @@ class Porduct {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['price'] = this.price;
-    data['old_price'] = this.oldPrice;
-    data['discount'] = this.discount;
-    data['image'] = this.image;
-    data['name'] = this.name;
-    data['description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['price'] = price;
+    data['old_price'] = oldPrice;
+    data['discount'] = discount;
+    data['image'] = image;
+    data['name'] = name;
+    data['description'] = description;
     return data;
   }
 }

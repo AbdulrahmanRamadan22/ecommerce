@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-
 import '../data/helper/status_request.dart';
 import '../data/remote/favorite.dart';
 import '../data/remote/my_favorite.dart';
@@ -11,8 +10,6 @@ import 'favorite_controller.dart';
 import 'home_controller.dart';
 
 class MyFavoriteController extends GetxController {
-
-
   MyFavoriteData favoriteData = MyFavoriteData(Get.find());
 
   List<FavoritesPorduct> data = [];
@@ -21,16 +18,11 @@ class MyFavoriteController extends GetxController {
 
   FavoriteController favoriteController = Get.put(FavoriteController());
 
-
-
-
-
   late StatusRequest statusRequest;
 
   MyServices myServices = Get.find();
 
   // FavoriteData favorite = FavoriteData(Get.find());
-
 
   // Map isFavorite = {};
 
@@ -42,13 +34,11 @@ class MyFavoriteController extends GetxController {
   //   update();
   // }
 
-
-  goToPageProductDetails(FavoriteData productModel,) {
-    Get.toNamed("productDetails", arguments: {
-      "FavoriteData": productModel});
+  goToPageProductDetails(
+    FavoriteData productModel,
+  ) {
+    Get.toNamed("productDetails", arguments: {"FavoriteData": productModel});
   }
-
-
 
   getFavorite() async {
     data.clear();
@@ -62,17 +52,15 @@ class MyFavoriteController extends GetxController {
     if (StatusRequest.success == statusRequest) {
       // Start backend
       if (response['status'] == true) {
-
         List responsedata = response['data']['favorites_porduct'];
 
         print(responsedata);
-
 
         data.addAll(responsedata.map((e) => FavoritesPorduct.fromJson(e)));
 
         print("data");
 
-        if(data.isEmpty){
+        if (data.isEmpty) {
           statusRequest = StatusRequest.failure;
         }
 
@@ -80,33 +68,23 @@ class MyFavoriteController extends GetxController {
       } else {
         statusRequest = StatusRequest.failure;
       }
-
     }
     homeController.refresh();
 
     update();
-
   }
 
-
-
-  removeFavorite(String favroiteId) async{
-
+  removeFavorite(String favroiteId) async {
     // statusRequest = StatusRequest.loading;
     var response = await favoriteData.deleteFavoriteData(
-      token:  myServices.sharedPreferences.getString("token")!,
+      token: myServices.sharedPreferences.getString("token")!,
       id: favroiteId,
       // productId: id,
     );
 
-
-
     data.removeWhere((element) => element.idFav == favroiteId);
 
-
     getFavorite();
-
-
 
     // data.remove(myServices.sharedPreferences.getString("token")!,);
 
@@ -116,16 +94,7 @@ class MyFavoriteController extends GetxController {
     //   backgroundColor:AppColor.gray,
     // );
     update();
-
-
   }
-
-
-
-
-
-
-
 
   // removeFavorite(String id)  {
   //   data.clear();
@@ -179,14 +148,9 @@ class MyFavoriteController extends GetxController {
   //   }
   // }
 
-
-
   @override
   void onInit() {
     getFavorite();
     super.onInit();
   }
-
-
-
 }

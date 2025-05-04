@@ -1,14 +1,29 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app_advanced/shared/services/services.dart';
+
+import '../../firebase_options.dart';
 
 class LocaleController extends GetxController {
   Locale? language;
 
   MyServices myServices = Get.find();
 
+  late SharedPreferences sharedPreferences ;
 
+
+
+  Future<LocaleController> init() async {
+    sharedPreferences =   await SharedPreferences.getInstance() ;
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    return this ;
+  }
 
   requestPerLocation() async {
     bool serviceEnabled;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app_advanced/view/widgets/shared/handling_dataview.dart';
 import '../../../../controller/admin/categories/add_categories_controller.dart';
+import '../../../../controller/admin/categories/update_categories_controller.dart';
 import '../../../../shared/function/valid_input.dart';
 import '../../../../shared/styles/colors.dart';
 import '../../../widgets/shared/default_button.dart';
@@ -9,14 +10,14 @@ import '../../../widgets/shared/default_form_field.dart';
 
 
 
-class AddCategories extends StatelessWidget {
-  const AddCategories({Key? key}) : super(key: key);
+class UpdateCategories extends StatelessWidget {
+  const UpdateCategories({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Get.put(CategoriesAddController());
+    Get.put(CategoriesUpdateController());
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Category")),
-      body: GetBuilder<CategoriesAddController>(
+      appBar: AppBar(title: const Text("Update Category")),
+      body: GetBuilder<CategoriesUpdateController>(
         builder: (controller) {
           return HandlingDataView(
             statusRequest: controller.statusRequest,
@@ -67,9 +68,9 @@ class AddCategories extends StatelessWidget {
 
                     const SizedBox(height: 40,),
                     defaultButton(
-                      text: "Add",
+                      text: "Save",
                       onPressed: () {
-                        controller.addData();
+                        controller.updateData(controller.categoryModel!.id.toString());
                       },
                     ),
 

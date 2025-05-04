@@ -11,13 +11,11 @@ import '../../widgets/shared/handling_dataview.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Get.put(LoginControllerImplement());
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),

@@ -44,14 +44,12 @@ class ProductScreen extends StatelessWidget {
                     }, onSubmitted: (String value) {
                       controller.onSearchProduct();
                       controller.checkSearch(value);
-
                     },
                     // onIconFavorite: () {
                     //
                     //
                     // }
                   ),
-
                   const SizedBox(height: 15,),
 
                   const ListCategoryItems(),

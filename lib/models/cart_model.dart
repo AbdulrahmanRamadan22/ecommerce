@@ -96,10 +96,12 @@ class Product {
   int? id;
   String? name;
   double? price;
-  double? oldPrice;
+  // ignore: prefer_typing_uninitialized_variables
+  var oldPrice;
   String? image;
   int? proCount;
-  double? discount;
+  // ignore: prefer_typing_uninitialized_variables
+  var discount;
   String? description;
   int? categoryId;
   String? createdAt;

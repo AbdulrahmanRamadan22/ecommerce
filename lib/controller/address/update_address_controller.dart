@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -36,6 +35,7 @@ class UpdateAddressController extends GetxController{
 
   String? details;
 
+  late String token;
 
 
 var  nameController=TextEditingController();
@@ -50,7 +50,7 @@ var  nameController=TextEditingController();
 
   Future<void> initialData() async {
 
-
+    // token = myServices.sharedPreferences.getString("token") ?? "";
 
     nameAddress = myServices.sharedPreferences.getString("nameAddress");
 
@@ -74,8 +74,6 @@ var  nameController=TextEditingController();
     // address = myServices.sharedPreferences.getInt("address");
 
   }
-
-
 
 
   updateAddress() async {
@@ -116,24 +114,23 @@ var  nameController=TextEditingController();
     update();
   }
 
-
-
-
-
-
-
   @override
-
   void onInit() {
 
-    nameController.text =myServices.sharedPreferences.getString("nameAddress")!  ;
-    cityController.text = myServices.sharedPreferences.getString("city")!;
-    detailsController.text = myServices.sharedPreferences.getString("details")! ;
-    regionController.text = myServices.sharedPreferences.getString("region")! ;
 
+
+
+    // nameController.text =myServices.sharedPreferences.getString("nameAddress")!  ;
+    // cityController.text = myServices.sharedPreferences.getString("city")!;
+    // detailsController.text = myServices.sharedPreferences.getString("details")! ;
+    // regionController.text = myServices.sharedPreferences.getString("region")! ;
+    //
 
     initialData();
     super.onInit();
   }
+
+
+
 
 }

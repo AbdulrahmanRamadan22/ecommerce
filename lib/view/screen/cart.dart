@@ -23,10 +23,8 @@ class CartScreen extends StatelessWidget {
 
             bottomNavigationBar: GetBuilder<CartController>(
               builder: (controller) {
-                return HandlingDataView(
-                  statusRequest: controller.statusRequest,
-                    widget:
-                     BottomNavgationBarCart(totalPrice: "${controller.total}"));
+                return
+                     BottomNavgationBarCart(totalPrice: "${controller.total}",subtotal: "${controller.total}" ,);
               }
             ),
 

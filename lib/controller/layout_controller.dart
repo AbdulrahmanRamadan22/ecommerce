@@ -19,7 +19,7 @@ class LayoutScreenControllerImplement extends LayoutScreenController {
     const HomeScreen(),
     const CategoryScreen(),
      const ProfileScreen(),
-    const SettingsScreen(),
+    SettingsScreen(),
     // const CartScreen(),
   ];
 

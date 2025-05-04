@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import '../data/helper/status_request.dart';
 import '../data/remote/cart.dart';
 import '../models/cart_model.dart';
-import '../models/product_model.dart';
 import '../shared/constants/routes.dart';
 import '../shared/function/handing_datacontroller.dart';
 import '../shared/services/services.dart';
@@ -94,6 +93,12 @@ class CartController extends GetxController {
         dataCart.addAll(responsedata.map((e) => CartItems.fromJson(e)));
 
 
+        if(dataCart.isEmpty)
+          {
+
+            statusRequest=StatusRequest.failure;
+          }
+
         total = response["data"]["total"].toDouble();
 
         print(total);
@@ -118,6 +123,34 @@ class CartController extends GetxController {
     update();
 
   }
+
+
+  removeAllCart() async{
+
+    // statusRequest = StatusRequest.loading;
+    var response = await cartdata.deleteAllCartData(
+      token:  myServices.sharedPreferences.getString("token")!,
+      // productId: id,
+    );
+
+    dataCart.remove(response);
+
+
+
+    getCart();
+
+
+    // ignore: unrelated_type_equality_checks
+    // data.removeWhere((element) => element.id == favroiteId);
+
+
+    update();
+
+
+  }
+
+
+
 
   resetVarCart() {
     total = 0;

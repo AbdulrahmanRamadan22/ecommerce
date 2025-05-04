@@ -1,3 +1,5 @@
+// import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +25,9 @@ import '../../view/widgets/shared/toast_api.dart';
    int? credit;
 
 
+   // File? image;
+
+
 
    var nameController=TextEditingController();
    var emailController=TextEditingController();
@@ -37,7 +42,6 @@ import '../../view/widgets/shared/toast_api.dart';
 
 
    Future<void> initialData() async {
-
 
 
      token = myServices.sharedPreferences.getString("token") ?? "";

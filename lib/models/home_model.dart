@@ -1,6 +1,6 @@
 class HomeModel {
   bool? status;
-  Null? message;
+  void message;
   Data? data;
 
   HomeModel({this.status, this.message, this.data});
@@ -14,7 +14,7 @@ class HomeModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = status;
-    data['message'] = message;
+    // data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -68,14 +68,14 @@ class ProductsHome {
 
   ProductsHome(
       {this.id,
-        this.price,
-        this.oldPrice,
-        this.discount,
-        this.image,
-        this.name,
-        this.description,
-        this.inFavorites,
-        this.inCart});
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      this.name,
+      this.description,
+      this.inFavorites,
+      this.inCart});
 
   ProductsHome.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -114,11 +114,11 @@ class Categories {
 
   Categories(
       {this.id,
-        this.name,
-        this.description,
-        this.image,
-        this.createdAt,
-        this.updatedAt});
+      this.name,
+      this.description,
+      this.image,
+      this.createdAt,
+      this.updatedAt});
 
   Categories.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -130,13 +130,13 @@ class Categories {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['image'] = this.image;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['description'] = description;
+    data['image'] = image;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

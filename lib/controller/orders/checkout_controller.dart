@@ -85,6 +85,8 @@ class CheckoutController extends GetxController {
 
         data.addAll(responsedata.map((e) => Address.fromJson(e)));
 
+        addressid=data[0].id.toString();
+
 
         print(response);
 
@@ -98,7 +100,6 @@ class CheckoutController extends GetxController {
       // End
     }
     update();
-
   }
 
 

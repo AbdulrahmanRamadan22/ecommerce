@@ -1,6 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
+// ignore: depend_on_referenced_packages
+import 'package:path/path.dart';
+
 
 import 'package:dartz/dartz.dart';
 import 'package:store_app_advanced/data/helper/status_request.dart';
@@ -110,4 +114,66 @@ class Api {
 
 
   }
+
+  Future<Either<StatusRequest, Map>> addRequestWithImageOne(
+
+  { required String url,
+  required Map data,
+  File? image,
+  String? token,
+// dynamic nameRequest,
+  }
+
+      )
+
+  async {
+    // nameRequest ??= "files";
+
+    var uri = Uri.parse(url);
+
+    var request = http.MultipartRequest("POST", uri);
+
+
+
+    Map<String, String> headers = {};
+    headers.addAll({
+      'Content-Type': 'application/json',
+    });
+    if (token != null) {
+      headers.addAll({
+        'Authorization': 'Bearer $token',
+      });
+    }
+
+    request.headers.addAll(headers);
+
+    if (image != null) {
+      var length = await image.length();
+      var stream = http.ByteStream(image.openRead());
+      stream.cast();
+      var multipartFile = http.MultipartFile("image", stream, length,
+          filename: basename(image.path));
+      request.files.add(multipartFile);
+    }
+
+    // add Data to request
+    data.forEach((key, value) {
+      request.fields[key] = value;
+    });
+    // add Data to request
+    // Send Request
+    var myrequest = await request.send();
+    // For get Response Body
+    var response = await http.Response.fromStream(myrequest);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print(response.body);
+      Map<String, dynamic> responseBody = jsonDecode(response.body);
+      return Right(responseBody);
+    } else {
+      return const Left(StatusRequest.serverFailed);
+    }
+  }
+
+
+
 }

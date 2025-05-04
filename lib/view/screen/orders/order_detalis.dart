@@ -1,15 +1,13 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../controller/orders/details_controller.dart';
 import '../../../shared/styles/colors.dart';
-import '../shared/handling_dataview.dart';
+import '../../widgets/shared/handling_dataview.dart';
 
-class OrdersDetails extends StatelessWidget {
-  const OrdersDetails({super.key});
+class OrdersRating extends StatelessWidget {
+  const OrdersRating({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class OrdersDetails extends StatelessWidget {
                                 Text("QTY",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: AppColor.defaultColor,,
+                                        color: AppColor.defaultColor,
                                         fontWeight: FontWeight.bold)),
                                 Text("Price",
                                     textAlign: TextAlign.center,
@@ -64,12 +62,12 @@ class OrdersDetails extends StatelessWidget {
                               //     ]))
                             ],
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             child:   Text("Total Price : ${controller.ordersModel.orderCost}\$",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.defaultColor,
                                     fontWeight: FontWeight.bold)),
                           ),
@@ -77,34 +75,43 @@ class OrdersDetails extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (controller.ordersModel.ordersType == "0")    Card(
-                    child: Container(
-                        child: ListTile(
-                          title: const Text("Shipping Address",
-                              style: TextStyle(
-                                  color: AppColor.primaryColor,
-                                  fontWeight: FontWeight.bold)),
-                          subtitle: Text(
-                              "${controller.ordersModel.addressCity} ${controller.ordersModel.addressStreet}"),
-                        )),
-                  ),
-                  if (controller.ordersModel.orderType == "0")    Card(
-                    child: Container(
-                      padding:
-                      EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      height: 300,
-                      width: double.infinity,
-                      child: GoogleMap(
-                        mapType: MapType.normal,
-                        markers: controller.markers.toSet(),
-                        initialCameraPosition: controller.cameraPosition!,
-                        onMapCreated: (GoogleMapController controllermap) {
-                          controller.completercontroller!
-                              .complete(controllermap);
-                        },
-                      ),
+                  const SizedBox(height: 10,),
+
+                  if (controller.ordersModel.orderType == "Delivery")
+
+                    Card(
+                    child:    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ...List.generate(
+                          controller.dataAddress.length,
+                              (index) => ListTile(
+                                title:  Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Shipping Address",
+                                      style: TextStyle(
+                                          color: AppColor.defaultColor,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 18),
+                                    ),
+                                     Text(
+                                      "${controller.dataAddress[index].city}",
+                                      style: const TextStyle(
+                                          color: AppColor.gray,
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 18),
+                                    ),
+                                  ],
+                                ),
+                                subtitle: Text("${controller.dataAddress[index].region} ${controller.dataAddress[index].details}",),
+                              )
+                        )
+                      ],
                     ),
-                  )
+                  ),
+
                 ])))),
       ),
     );

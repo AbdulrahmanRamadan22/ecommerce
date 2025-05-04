@@ -19,6 +19,11 @@ class AppImageAsset {
 
   static const String drivethruImage = "$roteImages/drivethru.png";
 
+  static const String box = "$roteImages/box.png";
+
+  static const String categories = "$roteImages/categories.png";
+
+
 
 
   //=======================lottie======================

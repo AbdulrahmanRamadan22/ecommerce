@@ -1,105 +1,102 @@
 import 'package:get/get.dart';
 
 import '../../data/helper/status_request.dart';
-import '../../data/remote/address.dart';
-import '../../data/remote/cart.dart';
 import '../../data/remote/order.dart';
-import '../../models/view_address_model.dart';
-import '../../shared/constants/routes.dart';
+import '../../models/orders_model.dart';
 import '../../shared/function/handing_datacontroller.dart';
 import '../../shared/services/services.dart';
-import '../cart_controller.dart';
 
-class CheckoutController extends GetxController {
+class OrdersPendingController extends GetxController {
 
 
-  // AddressData addressData = Get.put(AddressData(Get.find()));
 
   MyServices myServices = Get.find();
 
+
   StatusRequest statusRequest = StatusRequest.none;
-
-
-  CartController cartController= Get.put(CartController());
-  late String token;
-
-
-
-  // String? paymentMethod;
-  //
-  // String? deliveryType;
-  // String? addressid;
-  //
-  //
-  // late String total;
-  //
-
-
-
-  AddressData addressData = AddressData(Get.find()) ;
-
-
-
 
   OrderData orderData=OrderData(Get.find()) ;
 
+  late String token;
 
-  CartData cartData=CartData(Get.find());
+  List<Order> data = [];
 
-
-  List<Address> data=[];
-
-  // choosePaymentMethod(String val) {
-  //   paymentMethod = val;
-  //   update();
-  // }
-
-  // chooseDeliveryType(String val) {
-  //   deliveryType = val;
-  //   update();
-  // }
-
-  // chooseShippingAddress(String val) {
-  //   addressid = val;
-  //   update();
-  // }
+  String printOrderStatus(String val) {
+    if (val == "0") {
+      return "Pending Approval";
+    } else if (val == "1") {
+      return "The Order is being Prepared ";
+    } else if (val == "2") {
+      return "Ready To Picked up by Delivery man";
+    }  else if (val == "3") {
+      return "On The Way";
+    } else {
+      return "Archive";
+    }
+  }
 
 
 
-  getShippingAddress() async {
 
+
+  getOrders() async {
+    data.clear();
     statusRequest = StatusRequest.loading;
-
-    var response = await addressData.getAddress(
-
-      token: myServices.sharedPreferences.getString("token")!,
-
-    );
+    var response = await orderData.getOrdersPending(token:myServices.sharedPreferences.getString("token")! );
 
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);
-    if (StatusRequest.success == statusRequest) {
-      // Start backend
+    if (statusRequest == StatusRequest.success) {
       if (response['status'] == true) {
 
+        List responsedata = response['data']['data'];
 
-        List responsedata = response['data']['address'];
-
-
-        data.addAll(responsedata.map((e) => Address.fromJson(e)));
+        data.addAll(responsedata.map((e) => Order.fromJson(e)));
 
 
-        print(response);
-
-
-
-
-        // data.addAll(response['data']);
       } else {
         statusRequest = StatusRequest.failure;
       }
-      // End
     }
+    update();
+  }
+
+  refreshPage() {
+    getOrders();
+    // update();
+  }
+
+
+
+
+  removeOrder(  String orderId) async{
+
+
+    //
+    statusRequest = StatusRequest.loading;
+
+    var response = await orderData.deleteOrder(
+      token:  myServices.sharedPreferences.getString("token")!,
+      id: orderId,
+      // productId: id,
+    );
+
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == true) {
+
+
+        print(response);
+        // refreshPage();
+
+      }else{
+        statusRequest = StatusRequest.failure;
+
+      }
+
+      update();
+
+      }
+
     update();
 
   }
@@ -108,88 +105,11 @@ class CheckoutController extends GetxController {
 
 
 
-  // ignore: non_constant_identifier_names
-  // CheckoutOrder() async {
-  //   if (paymentMethod == null) {
-  //     return Get.snackbar("Error", "Please select a payment method");
-  //   }
-  //   if (deliveryType == null) {
-  //     return Get.snackbar("Error", "Please select a order Type");
-  //   }
-  //
-  //   if (addressid == null) {
-  //     return Get.snackbar("Error", "Please select a address");
-  //   }
-  //
-  //
-  //   statusRequest = StatusRequest.loading;
-  //
-  //   var response = await orderData.addOrder(
-  //
-  //     token: myServices.sharedPreferences.getString("token")!,
-  //     address_id:addressid.toString() ,
-  //     order_type:deliveryType.toString() ,
-  //     cost_delivery:"10" ,
-  //     payment_method:paymentMethod.toString() ,
-  //     total:total ,
-  //
-  //   );
-  //
-  //   print("=============================== Controller $response ");
-  //   statusRequest = handlingData(response);
-  //   if (StatusRequest.success == statusRequest) {
-  //     // Start backend
-  //     if (response['status'] == true) {
-  //
-  //       print("success");
-  //
-  //       cartController.removeAllCart();
-  //
-  //       Get.offAllNamed(AppRoute.layout);
-  //
-  //       Get.snackbar("success", " The order has been successfully requested");
-  //
-  //
-  //
-  //
-  //       print(response);
-  //
-  //       // removeAllCart();
-  //
-  //
-  //
-  //       // data.addAll(response['data']);
-  //     } else {
-  //       statusRequest = StatusRequest.none;
-  //
-  //       Get.snackbar("Error", "please try again");
-  //     }
-  //
-  //
-  //     // End
-  //   }
-  //   update();
-  //
-  // }
-
-
-
-  Future<void> initialData() async {
-
-
-    token = myServices.sharedPreferences.getString("token") ?? "";
-
-    //
-    // address = myServices.sharedPreferences.getInt("address");
-
-  }
-
-
   @override
   void onInit() {
-    initialData();
-    // total=Get.arguments['total'];
-    getShippingAddress();
+    getOrders();
+
+    token = myServices.sharedPreferences.getString("token") ?? "";
     super.onInit();
   }
 }

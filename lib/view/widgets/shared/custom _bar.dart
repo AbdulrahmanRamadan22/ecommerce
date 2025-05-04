@@ -52,24 +52,7 @@ Row customBar({
           }
         ),
       ),
-      const SizedBox(width: 10),
-      Container(
-        decoration: BoxDecoration(
-          color: AppColor.gray2,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        width: MediaQuery.of(context).size.width * 0.14,
-        // height:MediaQuery.of(context).size.height /13,
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: IconButton(
-          onPressed: () {},
-          icon:  Icon(
-            Icons.notifications_active_outlined,
-            size:  MediaQuery.of(context).size.width * 0.06,
-            color: AppColor.gray,
-          ),
-        ),
-      ),
+
       const SizedBox(width: 10),
       Container(
         decoration: BoxDecoration(

@@ -4,7 +4,6 @@ import 'package:store_app_advanced/view/widgets/shared/handling_dataview.dart';
 
 import '../../../controller/address/add_address_controller.dart';
 import '../../../controller/home_controller.dart';
-import '../../../shared/function/valid_input.dart';
 import '../../../shared/styles/colors.dart';
 import '../../widgets/shared/default_button.dart';
 import '../../widgets/shared/default_form_field.dart';
